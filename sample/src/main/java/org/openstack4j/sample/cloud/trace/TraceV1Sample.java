@@ -1,5 +1,5 @@
 /*******************************************************************************
- * 	Copyright 2017 HuaWei and OTC                              
+ *  Copyright 2017 Huawei TLD
  * 	                                                                                 
  * 	Licensed under the Apache License, Version 2.0 (the "License"); you may not      
  * 	use this file except in compliance with the License. You may obtain a copy of    
@@ -13,20 +13,31 @@
  * 	License for the specific language governing permissions and limitations under    
  * 	the License.                                                                     
  *******************************************************************************/
-package org.openstack4j.openstack.cloud.trace.internal;
+/*******************************************************************************
+ *******************************************************************************/
+package org.openstack4j.sample.cloud.trace;
 
-import org.openstack4j.api.types.ServiceType;
-import org.openstack4j.openstack.internal.BaseOpenStackService;
+import java.util.List;
 
-/**
- *
- * @author QianBiao.NG
- * @date   2017-07-15 10:31:11
- */
-public class BaseCloudTraceServices extends BaseOpenStackService {
+import org.openstack4j.openstack.cloud.trace.v1.domain.Trace;
+import org.openstack4j.openstack.cloud.trace.v1.options.TraceListOptions;
+import org.openstack4j.sample.AbstractSample;
+import org.testng.annotations.Test;
 
-	protected BaseCloudTraceServices() {
-		super(ServiceType.CLOUD_TRACE);
+@Test(suiteName = "CloudTrace/TraceV1/Sample")
+public class TraceV1Sample extends AbstractSample {
+
+
+	@Test(priority = 1)
+	public void testListTrace() {
+		TraceListOptions options = TraceListOptions.create().limit(5).user("replace-with-your-username").serviceType("CTS");
+		List<Trace> list = osclient.cloudTraceV1().traces().list("system", options);
+		
+		Trace trace = list.get(list.size() -1);
+		options.marker(trace.getId());
+		List<Trace> list2 = osclient.cloudTraceV1().traces().list("system", options);
+		
 	}
+
 
 }
