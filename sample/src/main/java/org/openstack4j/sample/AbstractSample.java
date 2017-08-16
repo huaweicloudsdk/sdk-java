@@ -68,7 +68,7 @@ public class AbstractSample {
 
 		// TODO remove authentication before push to github
 		String user = "replace-with-your-username";
-		String password = "hw@otc2017";
+		String password = "replace-with-your-password";
 		String projectId = "d4f2557d248e4860829f5fef030b209c";
 		String userDomainId = "bb42e2cd2b784ac4bdc350fb660a2bdb";
 		String authUrl = "https://iam.eu-de.otc.t-systems.com/v3";
