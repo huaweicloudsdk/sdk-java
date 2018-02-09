@@ -21,6 +21,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.collect.Lists;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -36,9 +39,6 @@ import com.huawei.openstack4j.model.compute.Server;
 import com.huawei.openstack4j.openstack.common.GenericLink;
 import com.huawei.openstack4j.openstack.common.IdResourceEntity;
 import com.huawei.openstack4j.openstack.common.ListResult;
-
-import com.google.common.base.MoreObjects;
-import com.google.common.collect.Lists;
 
 @JsonRootName("server")
 @JsonIgnoreProperties(ignoreUnknown=true)
@@ -96,6 +96,11 @@ public class NovaServer implements Server {
 	private List<IdResourceEntity> osExtendedVolumesAttached;
 	private String uuid;
 	private String adminPass;
+	
+	@JsonProperty("max_count")
+	private Integer maxCount;
+	@JsonProperty("min_count")
+	private Integer minCount;
 
 	@Override
 	public String getId() {
@@ -295,6 +300,23 @@ public class NovaServer implements Server {
 	public String getAdminPass() {
 		return adminPass;
 	}
+	
+
+	/* 
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Integer getMaxCount() {
+		return this.maxCount;
+	}
+
+	/* 
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Integer getMinCount() {
+		return minCount;
+	}
 
 	@Override
 	public String toString() {
@@ -321,4 +343,5 @@ public class NovaServer implements Server {
 			return servers;
 		}
 	}
+
 }

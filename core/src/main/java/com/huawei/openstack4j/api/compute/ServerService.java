@@ -97,8 +97,9 @@ public interface ServerService {
      *
      * @param server the server to boot
      * @return The reservation id for the created servers
-     */
+     
     String bootAndReturnReservationId(ServerCreate server);
+    */
 
     /**
      * Create (boot) a new Server
