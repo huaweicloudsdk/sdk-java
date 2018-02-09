@@ -159,7 +159,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 
 	/**
 	 * {@inheritDoc}
-	 */
+	 
 	@Override
 	public String bootAndReturnReservationId(ServerCreate server) {
 		checkNotNull(server);
@@ -172,6 +172,7 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 		return post(HashMap.class, uri("/servers")).entity(WrapServerIfApplicableFunction.INSTANCE.apply(create))
 				.execute().get("reservation_id").toString();
 	}
+	*/
 
 	/**
 	 * {@inheritDoc}

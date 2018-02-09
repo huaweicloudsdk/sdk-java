@@ -292,5 +292,17 @@ public interface Server extends ModelEntity {
      * @return security groups attached to the VM
      */
     List<? extends SecurityGroup> getSecurityGroups();
+    
+    /**
+     * 
+     * @return batch boot server max count
+     */
+    Integer getMaxCount();
+    
+    /**
+     * 
+     * @return batch boot server min count
+     */
+    Integer getMinCount();
 
 }
