@@ -8,11 +8,9 @@ It is a fluent OpenStack client that allows provisioning and control of an OpenS
 * Website: https://github.com/huaweicloudsdk/sdk-java
 
 
-```
 
 License
 -------
-```
 This software is licensed under the Apache 2 license, quoted below.
 
 Copyright 2016 ContainX and OpenStack4j
