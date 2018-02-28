@@ -51,5 +51,13 @@ public interface ServerV1Service {
 	 * @return				job-id of the asynchronous stop server task
 	 */
 	String reboot(List<String> serverIds, RebootType type);
+	
+	/**
+	 * batch start servers
+	 * 
+	 * @param serverIds		list of server identifier which to be started
+	 * @return				job-id of the asynchronous start server task
+	 */
+	String start(List<String> serverIds);
 
 }
