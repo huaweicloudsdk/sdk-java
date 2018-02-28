@@ -90,4 +90,21 @@ public class ServerV1Tests extends AbstractTest {
 		Assert.assertEquals(requestBody, expectBody);
 	}
 	
+	@Test
+	public void batchStartServerTest() throws Exception {
+		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
+
+		List<String> serverIds = Lists.newArrayList("server-id-1", "server-id-2");
+		String jobId = osv3().compute().serversV1().start(serverIds);
+
+		RecordedRequest request = server.takeRequest();
+		assertEquals(request.getPath(), "/v1/project-id/cloudservers/action");
+		assertEquals(request.getMethod(), "POST");
+		assertEquals(jobId, "this-is-a-job-id");
+
+		String requestBody = request.getBody().readUtf8();
+		String expectBody = this.getResource("/compute/v1/servers_start_request.json");
+		Assert.assertEquals(requestBody, expectBody);
+	}
+	
 }

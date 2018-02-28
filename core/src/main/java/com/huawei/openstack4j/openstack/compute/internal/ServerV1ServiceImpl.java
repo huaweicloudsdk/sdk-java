@@ -72,9 +72,18 @@ public class ServerV1ServiceImpl extends BaseComputeServices implements ServerV1
 		return post(AsyncJobEntity.class, uri("/cloudservers/action")).entity(action).execute().getId();
 	}
 	
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String start(List<String> serverIds) {
+		checkArgument(serverIds != null && serverIds.size() > 0, "parameter `serverIds` should not be empty");
+		
+		BatchStartAction action = new BatchStartAction(serverIds);
+		return post(AsyncJobEntity.class, uri("/cloudservers/action")).entity(action).execute().getId();
+	}
 	
-	@JsonRootName("reboot")
-	public static class BatchRebootAction implements ModelEntity {
+	public static class BatchAction implements ModelEntity {
 
 		private static final long serialVersionUID = -3993352728410832732L;
 
@@ -84,30 +93,39 @@ public class ServerV1ServiceImpl extends BaseComputeServices implements ServerV1
 		@JsonProperty("servers")
 		List<IdResourceEntity> servers = Lists.newArrayList();
 
-		public BatchRebootAction(List<String> serverIds, RebootType type) {
+		public BatchAction(List<String> serverIds, String type) {
 			for (String serverId : serverIds) {
 				servers.add(new IdResourceEntity(serverId));
 			}
-			this.type = type.name().toLowerCase();
+			this.type = type;
+		}
+	}
+	
+	@JsonRootName("os-start")
+	public static class BatchStartAction extends BatchAction {
+		private static final long serialVersionUID = -8311243025930452903L;
+
+		public BatchStartAction(List<String> serverIds) {
+			super(serverIds, null);
+		}
+	}
+
+	
+	@JsonRootName("reboot")
+	public static class BatchRebootAction extends BatchAction {
+		private static final long serialVersionUID = 3151059333050510631L;
+
+		public BatchRebootAction(List<String> serverIds, RebootType type) {
+			super(serverIds, type.name().toLowerCase());
 		}
 	}
 
 	@JsonRootName("os-stop")
-	public static class BatchStopAction implements ModelEntity {
-
-		private static final long serialVersionUID = -3993352728410832732L;
-
-		@JsonProperty("type")
-		public String type;
-
-		@JsonProperty("servers")
-		List<IdResourceEntity> servers = Lists.newArrayList();
+	public static class BatchStopAction extends BatchAction {
+		private static final long serialVersionUID = 9217647120271727241L;
 
 		public BatchStopAction(List<String> serverIds, StopType type) {
-			for (String serverId : serverIds) {
-				servers.add(new IdResourceEntity(serverId));
-			}
-			this.type = type.name().toLowerCase();
+			super(serverIds, type.name().toLowerCase());
 		}
 	}
 
