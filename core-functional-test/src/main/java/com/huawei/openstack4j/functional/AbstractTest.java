@@ -16,9 +16,11 @@
 package com.huawei.openstack4j.functional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.testng.annotations.BeforeTest;
+import org.testng.collections.Maps;
 
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
 import com.huawei.openstack4j.api.types.ServiceType;
@@ -27,6 +29,7 @@ import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.compute.Flavor;
 import com.huawei.openstack4j.model.compute.Image;
 import com.huawei.openstack4j.model.compute.Keypair;
+import com.huawei.openstack4j.model.network.Network;
 import com.huawei.openstack4j.model.network.Router;
 import com.huawei.openstack4j.openstack.OSFactory;
 import com.huawei.openstack4j.openstack.identity.internal.OverridableEndpointURLResolver;
@@ -43,6 +46,7 @@ public class AbstractTest {
 	private Flavor flavor;
 	private Image image;
 	private Keypair keypair;
+	private List<? extends Network> networks;
 
 	@BeforeTest
 	public static void initialV3Client() {
@@ -73,10 +77,10 @@ public class AbstractTest {
 		endpointResolver.addOverrideEndpoint(ServiceType.DATABASE, "https://rds.eu-de.otc.t-systems.com");
 
 		// TODO remove authentication before push to github
-		String user = "replace-with-your-username";
-		String password = "replace-with-your-password";
-		String projectId = "d4f2557d248e4860829f5fef030b209c";
-		String userDomainId = "bb42e2cd2b784ac4bdc350fb660a2bdb";
+		String user = "zhangdong";
+		String password = "HW2018**";
+		String projectId = "18899b93e7be46c2b7f0d2568efabc33";
+		String userDomainId = "71629073818b445d8d30591c545056d0";
 		String authUrl = "https://iam.eu-de.otc.t-systems.com/v3";
 
 		OSFactory.enableHttpLoggingFilter(true);
@@ -120,6 +124,15 @@ public class AbstractTest {
 			router = osclient.networking().router().list().get(0);
 		}
 		return router;
+	}
+
+	protected List<? extends Network> getNetwork(String routerId) {
+		if (networks == null) {
+			Map<String, String> newHashMap = Maps.newHashMap();
+			newHashMap.put("name", routerId);
+			networks = osclient.networking().network().list(newHashMap);
+		}
+		return networks;
 	}
 
 	protected Flavor getFirstFlavor() {

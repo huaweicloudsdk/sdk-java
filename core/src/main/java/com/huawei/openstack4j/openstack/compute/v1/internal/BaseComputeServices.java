@@ -13,45 +13,23 @@
  * 	License for the specific language governing permissions and limitations under    
  * 	the License.                                                                     
  *******************************************************************************/
-package com.huawei.openstack4j.model.compute;
+package com.huawei.openstack4j.openstack.compute.v1.internal;
 
-import com.huawei.openstack4j.model.ModelEntity;
+import com.google.common.base.Function;
 
-/**
- * A Personality is a file (path to file) and the contents that should be replaced on a new VM Server
- * 
- * @author Jeremy Unruh
- */
-public class Personality implements ModelEntity {
+import com.huawei.openstack4j.api.types.ServiceType;
+import com.huawei.openstack4j.openstack.common.functions.ReplaceVersionOfURL;
+import com.huawei.openstack4j.openstack.internal.BaseOpenStackService;
 
-	/** The Constant serialVersionUID. */
-	private static final long serialVersionUID = 1L;
+public class BaseComputeServices extends BaseOpenStackService {
 
-	private String path;
-	private String contents;
-
-	public Personality() {
+    protected BaseComputeServices() {
+    	super(ServiceType.COMPUTE, ReplaceVersionOfURL.instance("/v1"));
+    }
+    
+	public BaseComputeServices(ServiceType serviceType, Function<String, String> endpointFunc) {
+		super(serviceType, endpointFunc);
 	}
 
-	public Personality(String path, String contents) {
-		this.path = path;
-		this.contents = contents;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public String getContents() {
-		return contents;
-	}
 
 }
