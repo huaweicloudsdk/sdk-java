@@ -19,8 +19,19 @@ import java.util.List;
 
 import com.huawei.openstack4j.model.compute.RebootType;
 import com.huawei.openstack4j.model.compute.StopType;
+import com.huawei.openstack4j.openstack.compute.v1.domain.ServerCreate;
 
 public interface ServerV1Service {
+	
+	
+	
+	/**
+	 * create one or multiple server
+	 * 
+	 * @param creation
+	 * @return			job-id of the asynchronous create server task
+	 */
+	String create(ServerCreate creation);
 
 	/**
 	 * batch delete servers
