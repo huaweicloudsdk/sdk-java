@@ -26,6 +26,11 @@ import org.testng.collections.Lists;
 import com.huawei.openstack4j.api.AbstractTest;
 import com.huawei.openstack4j.model.compute.RebootType;
 import com.huawei.openstack4j.model.compute.StopType;
+import com.huawei.openstack4j.openstack.compute.v1.contants.VolumeType;
+import com.huawei.openstack4j.openstack.compute.v1.domain.DataVolume;
+import com.huawei.openstack4j.openstack.compute.v1.domain.Personality;
+import com.huawei.openstack4j.openstack.compute.v1.domain.RootVolume;
+import com.huawei.openstack4j.openstack.compute.v1.domain.ServerCreate;
 
 import okhttp3.mockwebserver.RecordedRequest;
 
@@ -47,14 +52,14 @@ public class ServerV1Tests extends AbstractTest {
 		RecordedRequest request = server.takeRequest();
 		assertEquals(request.getPath(), "/v1/project-id/cloudservers/delete");
 		assertEquals(request.getMethod(), "POST");
-		
+
 		assertEquals(jobId, "this-is-a-job-id");
 
 		String requestBody = request.getBody().readUtf8();
 		String expectBody = this.getResource("/compute/v1/servers_delete_request.json");
 		Assert.assertEquals(requestBody, expectBody);
 	}
-	
+
 	@Test
 	public void stopServerTest() throws Exception {
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
@@ -65,14 +70,14 @@ public class ServerV1Tests extends AbstractTest {
 		RecordedRequest request = server.takeRequest();
 		assertEquals(request.getPath(), "/v1/project-id/cloudservers/action");
 		assertEquals(request.getMethod(), "POST");
-		
+
 		assertEquals(jobId, "this-is-a-job-id");
 
 		String requestBody = request.getBody().readUtf8();
 		String expectBody = this.getResource("/compute/v1/servers_stop_request.json");
 		Assert.assertEquals(requestBody, expectBody);
 	}
-	
+
 	@Test
 	public void batchRebootServerTest() throws Exception {
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
@@ -89,7 +94,7 @@ public class ServerV1Tests extends AbstractTest {
 		String expectBody = this.getResource("/compute/v1/servers_reboot_request.json");
 		Assert.assertEquals(requestBody, expectBody);
 	}
-	
+
 	@Test
 	public void batchStartServerTest() throws Exception {
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
@@ -106,5 +111,31 @@ public class ServerV1Tests extends AbstractTest {
 		String expectBody = this.getResource("/compute/v1/servers_start_request.json");
 		Assert.assertEquals(requestBody, expectBody);
 	}
-	
+
+	@Test
+	public void createServerTest() throws Exception {
+		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
+
+		ServerCreate creation = ServerCreate.builder().name("name").flavorRef("flavor-id").imageRef("image-id")
+				.vpcId("vpc-id").addNetwork("network-id").availabilityZone("eu-de-01")
+				.addSecurityGroup("securityGroupId")
+				.addTag("key", "value")
+				.publicIP("floating-ip")
+				.addPersonality(Personality.builder().contents("some content").path("/etc/xxx").build())
+				.rootVolume(RootVolume.builder().type(VolumeType.SSD).build())
+				.addDataVolume(
+						DataVolume.builder().size(100).type(VolumeType.SAS).multiAttach(true).passthrough(true).build())
+				.count(2).build();
+		String jobId = osv3().compute().serversV1().create(creation);
+
+		RecordedRequest request = server.takeRequest();
+		assertEquals(request.getPath(), "/v1/project-id/cloudservers");
+		assertEquals(request.getMethod(), "POST");
+		assertEquals(jobId, "this-is-a-job-id");
+
+		String requestBody = request.getBody().readUtf8();
+		String expectBody = this.getResource("/compute/v1/servers_create_request.json");
+		Assert.assertEquals(requestBody, expectBody);
+	}
+
 }
