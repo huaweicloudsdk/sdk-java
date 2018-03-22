@@ -231,7 +231,6 @@ import com.huawei.openstack4j.openstack.compute.internal.QuotaSetServiceImpl;
 import com.huawei.openstack4j.openstack.compute.internal.ServerGroupServiceImpl;
 import com.huawei.openstack4j.openstack.compute.internal.ServerServiceImpl;
 import com.huawei.openstack4j.openstack.compute.internal.ServerTagServiceImpl;
-import com.huawei.openstack4j.openstack.compute.internal.ServerV1ServiceImpl;
 import com.huawei.openstack4j.openstack.compute.internal.ServicesServiceImpl;
 import com.huawei.openstack4j.openstack.compute.internal.ext.FloatingIPDNSDomainServiceImpl;
 import com.huawei.openstack4j.openstack.compute.internal.ext.FloatingIPDNSEntryServiceImpl;
@@ -241,6 +240,7 @@ import com.huawei.openstack4j.openstack.compute.internal.ext.InstanceActionsServ
 import com.huawei.openstack4j.openstack.compute.internal.ext.InterfaceServiceImpl;
 import com.huawei.openstack4j.openstack.compute.internal.ext.MigrationServiceImpl;
 import com.huawei.openstack4j.openstack.compute.internal.ext.ZoneServiceImpl;
+import com.huawei.openstack4j.openstack.compute.v1.internal.ServerV1ServiceImpl;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseBackupService;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseInstanceFlavorService;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseInstanceService;

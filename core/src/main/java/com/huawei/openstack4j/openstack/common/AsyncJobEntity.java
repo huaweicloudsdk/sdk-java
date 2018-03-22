@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * HuaWei Resouce Quota
  *
  * @author QianBiao.NG
  * @date   2017-07-14 14:16:37
