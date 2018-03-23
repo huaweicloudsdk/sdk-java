@@ -32,7 +32,7 @@ public class TraceV2Test extends AbstractTest {
 	@Test(priority = 1)
 	public void testListTrace() {
 		// 德电环境似乎没有部署这个接口
-		TraceListOptions options = TraceListOptions.create().limit(5).user("replace-with-your-username").serviceType("CTS");
+		TraceListOptions options = TraceListOptions.create().limit(5).user("zhangdong").serviceType("CTS");
 		List<Trace> list = osclient.cloudTraceV2().traces().list("system", options);
 		
 		if (list.size() > 0) {

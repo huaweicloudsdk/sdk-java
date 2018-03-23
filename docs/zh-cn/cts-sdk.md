@@ -56,13 +56,13 @@ System.out.println(delete.isSuccess());
 ## 事件管理
 ### 查询事件列表（v1.0）
 ```java
-TraceListOptions options = TraceListOptions.create().limit(5).user("replace-with-your-username").serviceType("CTS");
+TraceListOptions options = TraceListOptions.create().limit(5).user("zhangdong").serviceType("CTS");
 List<Trace> list = osclient.cloudTraceV1().traces().list("system", options);
 ```
 
 ### 查询事件列表（v2.0）
 ```java
-TraceListOptions options = TraceListOptions.create().limit(5).user("replace-with-your-username").serviceType("CTS");
+TraceListOptions options = TraceListOptions.create().limit(5).user("zhangdong").serviceType("CTS");
 List<Trace> list = osclient.cloudTraceV2().traces().list("system", options);
 ```
     

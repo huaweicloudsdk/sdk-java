@@ -56,13 +56,13 @@ System.out.println(delete.isSuccess());
 ## Trace
 ### List Trace（v1.0）
 ```java
-TraceListOptions options = TraceListOptions.create().limit(5).user("replace-with-your-username").serviceType("CTS");
+TraceListOptions options = TraceListOptions.create().limit(5).user("zhangdong").serviceType("CTS");
 List<Trace> list = osclient.cloudTraceV1().traces().list("system", options);
 ```
 
 ### List Trace（v2.0）
 ```java
-TraceListOptions options = TraceListOptions.create().limit(5).user("replace-with-your-username").serviceType("CTS");
+TraceListOptions options = TraceListOptions.create().limit(5).user("zhangdong").serviceType("CTS");
 List<Trace> list = osclient.cloudTraceV2().traces().list("system", options);
 ```
     

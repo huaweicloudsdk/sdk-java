@@ -31,7 +31,7 @@ public class TraceV1Test extends AbstractTest {
 
 	@Test(priority = 1)
 	public void testListTrace() {
-		TraceListOptions options = TraceListOptions.create().limit(5).user("replace-with-your-username").serviceType("CTS");
+		TraceListOptions options = TraceListOptions.create().limit(5).user("zhangdong").serviceType("CTS");
 		List<Trace> list = osclient.cloudTraceV1().traces().list("system", options);
 		
 		Trace trace = list.get(list.size() -1);
