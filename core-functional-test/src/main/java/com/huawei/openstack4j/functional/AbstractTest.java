@@ -77,10 +77,10 @@ public class AbstractTest {
 		endpointResolver.addOverrideEndpoint(ServiceType.DATABASE, "https://rds.eu-de.otc.t-systems.com");
 
 		// TODO remove authentication before push to github
-		String user = "zhangdong";
-		String password = "HW2018**";
-		String projectId = "18899b93e7be46c2b7f0d2568efabc33";
-		String userDomainId = "71629073818b445d8d30591c545056d0";
+		String user = "replace-with-your-username";
+		String password = "replace-with-your-password";
+		String projectId = "d4f2557d248e4860829f5fef030b209c";
+		String userDomainId = "bb42e2cd2b784ac4bdc350fb660a2bdb";
 		String authUrl = "https://iam.eu-de.otc.t-systems.com/v3";
 
 		OSFactory.enableHttpLoggingFilter(true);
