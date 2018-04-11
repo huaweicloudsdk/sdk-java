@@ -441,7 +441,7 @@ public class ServerCreate implements ModelEntity {
 			if (this.tags == null) {
 				this.tags = new ArrayList<>();
 			}
-			this.tags.add(key + "," + value);
+			this.tags.add(key + "." + value);
 			return this;
 		}
 
