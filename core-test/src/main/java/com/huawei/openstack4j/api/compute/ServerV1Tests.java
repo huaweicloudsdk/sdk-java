@@ -122,7 +122,7 @@ public class ServerV1Tests extends AbstractTest {
 				.addTag("key", "value")
 				.publicIP("floating-ip")
 				.addPersonality(Personality.builder().contents("some content").path("/etc/xxx").build())
-				.rootVolume(RootVolume.builder().type(VolumeType.SSD).build())
+				.rootVolume(RootVolume.builder().size(10).type(VolumeType.SSD).build())
 				.addDataVolume(
 						DataVolume.builder().size(100).type(VolumeType.SAS).multiAttach(true).passthrough(true).build())
 				.count(2).build();

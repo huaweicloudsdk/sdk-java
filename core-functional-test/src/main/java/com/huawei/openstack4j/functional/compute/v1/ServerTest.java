@@ -27,19 +27,19 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.huawei.openstack4j.functional.AbstractTest;
+import com.huawei.openstack4j.functional.AbstractTestV3;
 import com.huawei.openstack4j.functional.Retry;
 import com.huawei.openstack4j.model.compute.Server;
 import com.huawei.openstack4j.model.network.Network;
 import com.huawei.openstack4j.model.network.Router;
-import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
 import com.huawei.openstack4j.openstack.compute.v1.contants.VolumeType;
+import com.huawei.openstack4j.openstack.compute.v1.domain.DataVolume;
 import com.huawei.openstack4j.openstack.compute.v1.domain.RootVolume;
 import com.huawei.openstack4j.openstack.compute.v1.domain.ServerCreate;
 import com.huawei.openstack4j.openstack.message.notification.domain.Topic;
 
 @Test(suiteName = "Compute/v1/Server/Test")
-public class ServerTest extends AbstractTest {
+public class ServerTest extends AbstractTestV3 {
 
 	String name = randomName();
 	Topic topic = null;
@@ -52,7 +52,8 @@ public class ServerTest extends AbstractTest {
 		List<? extends Network> networks = this.getNetwork(router.getId());
 		ServerCreate creation = ServerCreate.builder().name(name).flavorRef(this.getFirstFlavor().getId())
 				.imageRef(this.getFirstImage().getId()).vpcId(router.getId()).addNetwork(networks.get(0).getId())
-				.availabilityZone("eu-de-01").rootVolume(RootVolume.builder().type(VolumeType.SSD).build())
+				.availabilityZone("eu-de-01").rootVolume(RootVolume.builder().size(100).type(VolumeType.SSD).build())
+				 .addDataVolume(DataVolume.builder().size(100).type(VolumeType.SATA).multiAttach(true).passthrough(true).build())
 				.count(2).build();
 		String jobId = osclient.compute().serversV1().create(creation);
 		

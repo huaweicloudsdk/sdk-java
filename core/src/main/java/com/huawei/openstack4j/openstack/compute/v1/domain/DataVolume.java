@@ -37,7 +37,7 @@ public class DataVolume implements ModelEntity {
 		co-pl：高IO (性能优化Ⅰ型)
 		uh-l1：超高IO (时延优化)
 	 */
-	@JsonProperty("type")
+	@JsonProperty("volumetype")
 	VolumeType type;
 
 	/**

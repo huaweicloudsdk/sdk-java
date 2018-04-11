@@ -16,10 +16,11 @@
     },
     "count" : 2,
     "root_volume" : {
-      "volumetype" : "SSD"
+      "volumetype" : "SSD",
+      "size" : 10
     },
     "data_volumes" : [ {
-      "type" : "SAS",
+      "volumetype" : "SAS",
       "size" : 100,
       "multiattach" : true,
       "hw:passthrough" : true
@@ -28,6 +29,6 @@
       "id" : "securityGroupId"
     } ],
     "availability_zone" : "eu-de-01",
-    "tags" : [ "key,value" ]
+    "tags" : [ "key.value" ]
   }
 }
