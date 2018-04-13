@@ -1,7 +1,9 @@
 package com.huawei.openstack4j.openstack.compute.v1.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -124,7 +126,7 @@ public class ServerCreate implements ModelEntity {
 		创建密码方式鉴权的Windows弹性云服务器时，为必填字段。
 	 */
 	@JsonProperty("metadata")
-	private Metadata metadata;
+	private Map<String, Object> metadata;
 
 	/**
 	 * 弹性云服务器的标签。
@@ -142,7 +144,7 @@ public class ServerCreate implements ModelEntity {
 	public ServerCreate(String name, String imageRef, String flavorRef, List<Personality> personality, String userData,
 			String adminPass, String keyName, String vpcId, List<Network> networks, PublicIP publicIP, Integer count,
 			RootVolume rootVolume, List<DataVolume> dataVolumes, List<IdResourceEntity> securityGroups,
-			String availabilityZone, ServerExtendParam extendParam, Metadata metadata, List<String> tags) {
+			String availabilityZone, ServerExtendParam extendParam, Map<String, Object> metadata, List<String> tags) {
 		this.name = name;
 		this.imageRef = imageRef;
 		this.flavorRef = flavorRef;
@@ -243,7 +245,7 @@ public class ServerCreate implements ModelEntity {
 		return this.extendParam;
 	}
 
-	public Metadata getMetadata() {
+	public Map<String, Object> getMetadata() {
 		return this.metadata;
 	}
 
@@ -280,7 +282,7 @@ public class ServerCreate implements ModelEntity {
 		private List<IdResourceEntity> securityGroups;
 		private String availabilityZone;
 		private ServerExtendParam extendParam;
-		private Metadata metadata;
+		private Map<String, Object> metadata;
 		private List<String> tags;
 
 		ServerCreateBuilder() {
@@ -419,8 +421,16 @@ public class ServerCreate implements ModelEntity {
 			return this;
 		}
 
-		public ServerCreateBuilder metadata(Metadata metadata) {
+		public ServerCreateBuilder metadata(Map<String, Object> metadata) {
 			this.metadata = metadata;
+			return this;
+		}
+		
+		public ServerCreateBuilder addMetadata(String key, Object value) {
+			if (this.metadata == null) {
+				this.metadata = new HashMap<String , Object>();
+			}
+			this.metadata.put(key, value);
 			return this;
 		}
 

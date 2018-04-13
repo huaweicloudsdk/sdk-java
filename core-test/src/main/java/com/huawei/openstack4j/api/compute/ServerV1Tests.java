@@ -26,8 +26,12 @@ import org.testng.collections.Lists;
 import com.huawei.openstack4j.api.AbstractTest;
 import com.huawei.openstack4j.model.compute.RebootType;
 import com.huawei.openstack4j.model.compute.StopType;
+import com.huawei.openstack4j.openstack.compute.v1.contants.NetworkChargingMode;
+import com.huawei.openstack4j.openstack.compute.v1.contants.ShareType;
 import com.huawei.openstack4j.openstack.compute.v1.contants.VolumeType;
+import com.huawei.openstack4j.openstack.compute.v1.domain.Bandwidth;
 import com.huawei.openstack4j.openstack.compute.v1.domain.DataVolume;
+import com.huawei.openstack4j.openstack.compute.v1.domain.FloatingIPCreate;
 import com.huawei.openstack4j.openstack.compute.v1.domain.Personality;
 import com.huawei.openstack4j.openstack.compute.v1.domain.RootVolume;
 import com.huawei.openstack4j.openstack.compute.v1.domain.ServerCreate;
@@ -116,15 +120,21 @@ public class ServerV1Tests extends AbstractTest {
 	public void createServerTest() throws Exception {
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
 
+		
+		Bandwidth bandwidth = Bandwidth.builder().size(10).shareType(ShareType.PER).chargeMode(NetworkChargingMode.BANDWIDTH).build();
+		FloatingIPCreate build = FloatingIPCreate.builder().ipType("5_bgp").bandwidth(bandwidth ).build();
+		
 		ServerCreate creation = ServerCreate.builder().name("name").flavorRef("flavor-id").imageRef("image-id")
 				.vpcId("vpc-id").addNetwork("network-id").availabilityZone("eu-de-01")
 				.addSecurityGroup("securityGroupId")
 				.addTag("key", "value")
-				.publicIP("floating-ip")
+				.publicIP(build)
 				.addPersonality(Personality.builder().contents("some content").path("/etc/xxx").build())
 				.rootVolume(RootVolume.builder().size(10).type(VolumeType.SSD).build())
 				.addDataVolume(
 						DataVolume.builder().size(100).type(VolumeType.SAS).multiAttach(true).passthrough(true).build())
+				.addMetadata("mkey", "mvalue")
+				.addMetadata("mkey2", "mvalue2")
 				.count(2).build();
 		String jobId = osv3().compute().serversV1().create(creation);
 

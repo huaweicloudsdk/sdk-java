@@ -12,7 +12,14 @@
       "subnet_id" : "network-id"
     } ],
     "publicip" : {
-      "id" : "floating-ip"
+      "eip" : {
+        "iptype" : "5_bgp",
+        "bandwidth" : {
+          "size" : 10,
+          "sharetype" : "PER",
+          "chargemode" : "bandwidth"
+        }
+      }
     },
     "count" : 2,
     "root_volume" : {
@@ -29,6 +36,10 @@
       "id" : "securityGroupId"
     } ],
     "availability_zone" : "eu-de-01",
+    "metadata" : {
+      "mkey2" : "mvalue2",
+      "mkey" : "mvalue"
+    },
     "tags" : [ "key.value" ]
   }
 }
