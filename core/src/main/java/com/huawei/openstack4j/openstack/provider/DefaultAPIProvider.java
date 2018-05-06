@@ -19,7 +19,6 @@ package com.huawei.openstack4j.openstack.provider;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
-
 import com.huawei.openstack4j.api.APIProvider;
 import com.huawei.openstack4j.api.artifact.ArtifactService;
 import com.huawei.openstack4j.api.artifact.ToscaTemplatesArtifactService;
@@ -152,6 +151,7 @@ import com.huawei.openstack4j.api.scaling.AutoScalingActivityLogService;
 import com.huawei.openstack4j.api.scaling.AutoScalingConfigService;
 import com.huawei.openstack4j.api.scaling.AutoScalingGroupInstanceService;
 import com.huawei.openstack4j.api.scaling.AutoScalingGroupService;
+import com.huawei.openstack4j.api.scaling.AutoScalingLifecycleHookService;
 import com.huawei.openstack4j.api.scaling.AutoScalingPolicyService;
 import com.huawei.openstack4j.api.scaling.AutoScalingQuotaService;
 import com.huawei.openstack4j.api.scaling.AutoScalingService;
@@ -364,6 +364,7 @@ import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingActivityLogS
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingConfigServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingGroupInstanceServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingGroupServiceImpl;
+import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingLifecycleHookServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingPolicyServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingQuotaServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingServiceImpl;
@@ -658,7 +659,8 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(AutoScalingPolicyService.class, AutoScalingPolicyServiceImpl.class);
 		bind(AutoScalingActivityLogService.class, AutoScalingActivityLogServiceImpl.class);
 		bind(AutoScalingQuotaService.class, AutoScalingQuotaServiceImpl.class);
-
+		bind(AutoScalingLifecycleHookService.class, AutoScalingLifecycleHookServiceImpl.class);		
+		
 		// load balance
 		bind(ELBService.class, ELBServiceImpl.class);
 		bind(ELBLoadBalancerService.class, ELBLoadBalancerServiceImpl.class);
