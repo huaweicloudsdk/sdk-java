@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.huawei.openstack4j.common.Buildable;
 import com.huawei.openstack4j.model.ModelEntity;
 import com.huawei.openstack4j.model.storage.block.builder.VolumeBuilder;
-
 import com.google.common.base.CaseFormat;
 
 import org.slf4j.LoggerFactory;
@@ -142,6 +141,11 @@ public interface Volume extends ModelEntity, Buildable<VolumeBuilder> {
 	 * @return the image reference identifier (if an image was associated) otherwise null
 	 */
 	String getImageRef();
+	
+	/**
+	 * @return the image reference identifier (if an image was associated) otherwise null
+	 */
+	Map<String, Object> getImageMetadata();
 
 	/**
 	 * @return ID of source volume to clone from

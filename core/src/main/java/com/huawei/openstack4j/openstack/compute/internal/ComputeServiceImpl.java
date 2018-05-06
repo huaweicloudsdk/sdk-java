@@ -171,9 +171,9 @@ public class ComputeServiceImpl extends BaseComputeServices implements ComputeSe
 	/* 
 	 * {@inheritDoc}
 	 */
-	@Override
-	public ServerV1Service serversV1() {
-		return Apis.get(ServerV1Service.class);
-	}
+//	@Override
+//	public ServerV1Service serversV1() {
+//		return Apis.get(ServerV1Service.class);
+//	}
     
 }

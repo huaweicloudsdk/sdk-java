@@ -100,6 +100,14 @@ public interface VolumeBuilder extends Builder<VolumeBuilder, Volume> {
 	VolumeBuilder metadata(Map<String, String> metadata);
 	
 	/**
+	 * One or more metadata key and value pairs to associate with the volume. <b>Optional</b>
+	 * 
+	 * @param metadata metadata to set
+	 * @return VolumeBuilder
+	 */
+	VolumeBuilder imageMetadata(Map<String, Object> imageMetadata);
+	
+	/**
      * The associated availability zone. <b>Optional</b>
      * 
      * @param zone The associated availability zone.

@@ -20,6 +20,7 @@ import com.huawei.openstack4j.api.scaling.AutoScalingActivityLogService;
 import com.huawei.openstack4j.api.scaling.AutoScalingConfigService;
 import com.huawei.openstack4j.api.scaling.AutoScalingGroupInstanceService;
 import com.huawei.openstack4j.api.scaling.AutoScalingGroupService;
+import com.huawei.openstack4j.api.scaling.AutoScalingLifecycleHookService;
 import com.huawei.openstack4j.api.scaling.AutoScalingPolicyService;
 import com.huawei.openstack4j.api.scaling.AutoScalingQuotaService;
 import com.huawei.openstack4j.api.scaling.AutoScalingService;
@@ -63,5 +64,10 @@ public class AutoScalingServiceImpl extends BaseAutoScalingServices implements A
 	public AutoScalingQuotaService quotas() {
 		return Apis.get(AutoScalingQuotaService.class);
 	}
-	
+
+	@Override
+	public AutoScalingLifecycleHookService lifecycleHook() {
+		return Apis.get(AutoScalingLifecycleHookService.class);
+	}
+
 }
