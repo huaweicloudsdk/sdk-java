@@ -9,7 +9,6 @@ import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.dns.v2.Zone;
 import com.huawei.openstack4j.openstack.OSFactory;
 import com.huawei.openstack4j.openstack.identity.internal.OverridableEndpointURLResolver;
-import com.huawei.openstack4j.openstack.scaling.domain.ASAutoScalingLifecycleHook;
 
 /**
  *
@@ -26,7 +25,7 @@ public class Openstack4jSample {
 		// step 1: add cloud service override endpoint
 		OverridableEndpointURLResolver endpointResolver = new OverridableEndpointURLResolver();
 		// "example" in the endpoint stands for "Region.Cloud"
-//		endpointResolver.addOverrideEndpoint(ServiceType.DNS, "https://dns.example.com");
+		endpointResolver.addOverrideEndpoint(ServiceType.DNS, "https://dns.example.com");
 		
 		// ========================================================================================== // 
 		// those services's endpoint will be auto detected from V3 authentication token               // 
@@ -70,13 +69,13 @@ public class Openstack4jSample {
 		 */
 
 		// step 2: setup the authentication credit
-		String user = "zhoulei";
-		String password = "#EDC2wsx1qaz";
-		String projectId = "57e98940a77f4bb988a21a7d0603a626";
-		String userDomainId = "0984aafba48049a6b9457b89968eeabf";
+		String user = "replace-with-your-username";
+		String password = "replace-with-your-password";
+		String projectId = "replace-with-your-project-id";
+		String userDomainId = "replace-with-your-user-domain-id";
 		// "example" in the endpoint stands for "Region.Cloud"
-		String authUrl = "https://iam.cn-north-1.myhuaweicloud.com/v3";
-		
+		String authUrl = "https://iam.example.com/v3";
+
 		// step 3: initial OpenStack4j Client
 		OSFactory.enableHttpLoggingFilter(true);
 		// config of the client
@@ -92,8 +91,6 @@ public class Openstack4jSample {
 
 		// Use client to visit DNS list zone API
 		List<? extends Zone> list = osclient.dns().zones().list();
-		
-		List<? extends ASAutoScalingLifecycleHook> list2 = osclient.autoScaling().lifecycleHook().list("1111111111");
 		System.out.println(list);
 	}
 
