@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.common.base.MoreObjects;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -175,6 +174,11 @@ public class CinderVolume implements Volume {
 		return migrateStatus != null ? migrateStatus : MigrationStatus.NONE;
 	}
 
+	@Override
+	public Map<String, Object> getImageMetadata() {
+		return imageMetadata;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -256,7 +260,7 @@ public class CinderVolume implements Volume {
 				     .add("status", status).add("size", size).add("zone", zone).add("created", created)
 				     .add("volumeType", volumeType).add("imageRef", getImageRef())
 				     .add("sourceVolid", sourceVolid).add("snapshotId", snapshotId).add("metadata", metadata)
-				     .add("bootable", bootable)
+				     .add("bootable", bootable).add("imageMetadata", imageMetadata)
 				     .toString();
 	}
 
@@ -336,6 +340,12 @@ public class CinderVolume implements Volume {
 		@Override
 		public VolumeBuilder metadata(Map<String, String> metadata) {
 			m.metadata = metadata;
+			return this;
+		}
+
+		@Override
+		public VolumeBuilder imageMetadata(Map<String, Object> imageMetadata) {
+			m.imageMetadata = imageMetadata;
 			return this;
 		}
 
