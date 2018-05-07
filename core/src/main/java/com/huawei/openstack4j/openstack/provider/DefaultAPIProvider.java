@@ -41,7 +41,6 @@ import com.huawei.openstack4j.api.compute.QuotaSetService;
 import com.huawei.openstack4j.api.compute.ServerGroupService;
 import com.huawei.openstack4j.api.compute.ServerService;
 import com.huawei.openstack4j.api.compute.ServerTagService;
-import com.huawei.openstack4j.api.compute.ServerV1Service;
 import com.huawei.openstack4j.api.compute.ext.FloatingIPDNSDomainService;
 import com.huawei.openstack4j.api.compute.ext.FloatingIPDNSEntryService;
 import com.huawei.openstack4j.api.compute.ext.FloatingIPDNSService;
@@ -240,7 +239,6 @@ import com.huawei.openstack4j.openstack.compute.internal.ext.InstanceActionsServ
 import com.huawei.openstack4j.openstack.compute.internal.ext.InterfaceServiceImpl;
 import com.huawei.openstack4j.openstack.compute.internal.ext.MigrationServiceImpl;
 import com.huawei.openstack4j.openstack.compute.internal.ext.ZoneServiceImpl;
-import com.huawei.openstack4j.openstack.compute.v1.internal.ServerV1ServiceImpl;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseBackupService;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseInstanceFlavorService;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseInstanceService;
@@ -252,6 +250,7 @@ import com.huawei.openstack4j.openstack.database.internal.DatastoreService;
 import com.huawei.openstack4j.openstack.dns.v2.internal.DNSServiceImpl;
 import com.huawei.openstack4j.openstack.dns.v2.internal.PTRServiceImpl;
 import com.huawei.openstack4j.openstack.dns.v2.internal.RecordsetServiceImpl;
+import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.gbp.internal.ExternalPolicyServiceImpl;
 import com.huawei.openstack4j.openstack.gbp.internal.ExternalSegmentServiceImpl;
 import com.huawei.openstack4j.openstack.gbp.internal.GbpServiceImpl;
@@ -459,7 +458,12 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(FlavorService.class, FlavorServiceImpl.class);
 		bind(ComputeImageService.class, ComputeImageServiceImpl.class);
 		bind(ServerService.class, ServerServiceImpl.class);
-		bind(ServerV1Service.class, ServerV1ServiceImpl.class);
+		
+		// new ecs v1
+		bind(ElasticComputeService.class, ElasticComputeService.class);
+		bind(com.huawei.openstack4j.openstack.ecs.v1.internal.ServerService.class, 
+				com.huawei.openstack4j.openstack.ecs.v1.internal.ServerService.class);
+		
 		bind(QuotaSetService.class, QuotaSetServiceImpl.class);
 		bind(HostService.class, HostServiceImpl.class);
 		bind(NetworkingService.class, NetworkingServiceImpl.class);

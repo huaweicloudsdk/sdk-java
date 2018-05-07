@@ -13,7 +13,7 @@
  * 	License for the specific language governing permissions and limitations under    
  * 	the License.                                                                     
  *******************************************************************************/
-package com.huawei.openstack4j.api.compute;
+package com.huawei.openstack4j.api.ecs;
 
 import static org.testng.Assert.*;
 
@@ -26,20 +26,20 @@ import org.testng.collections.Lists;
 import com.huawei.openstack4j.api.AbstractTest;
 import com.huawei.openstack4j.model.compute.RebootType;
 import com.huawei.openstack4j.model.compute.StopType;
-import com.huawei.openstack4j.openstack.compute.v1.contants.NetworkChargingMode;
-import com.huawei.openstack4j.openstack.compute.v1.contants.ShareType;
-import com.huawei.openstack4j.openstack.compute.v1.contants.VolumeType;
-import com.huawei.openstack4j.openstack.compute.v1.domain.Bandwidth;
-import com.huawei.openstack4j.openstack.compute.v1.domain.DataVolume;
-import com.huawei.openstack4j.openstack.compute.v1.domain.FloatingIPCreate;
-import com.huawei.openstack4j.openstack.compute.v1.domain.Personality;
-import com.huawei.openstack4j.openstack.compute.v1.domain.RootVolume;
-import com.huawei.openstack4j.openstack.compute.v1.domain.ServerCreate;
+import com.huawei.openstack4j.openstack.ecs.v1.contants.NetworkChargingMode;
+import com.huawei.openstack4j.openstack.ecs.v1.contants.ShareType;
+import com.huawei.openstack4j.openstack.ecs.v1.contants.VolumeType;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.Bandwidth;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.DataVolume;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.FloatingIPCreate;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.Personality;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.RootVolume;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
 
 import okhttp3.mockwebserver.RecordedRequest;
 
-@Test(suiteName = "ServersV1")
-public class ServerV1Tests extends AbstractTest {
+@Test(suiteName = "ECS/Servers")
+public class ServerTests extends AbstractTest {
 
 	@Override
 	protected Service service() {
@@ -51,7 +51,7 @@ public class ServerV1Tests extends AbstractTest {
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
 
 		List<String> serverIds = Lists.newArrayList("server-id-1", "server-id-2");
-		String jobId = osv3().compute().serversV1().delete(serverIds, false, false);
+		String jobId = osv3().ecs().servers().delete(serverIds, false, false);
 
 		RecordedRequest request = server.takeRequest();
 		assertEquals(request.getPath(), "/v1/project-id/cloudservers/delete");
@@ -69,7 +69,7 @@ public class ServerV1Tests extends AbstractTest {
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
 
 		List<String> serverIds = Lists.newArrayList("server-id-1", "server-id-2");
-		String jobId = osv3().compute().serversV1().stop(serverIds, StopType.SOFT);
+		String jobId = osv3().ecs().servers().stop(serverIds, StopType.SOFT);
 
 		RecordedRequest request = server.takeRequest();
 		assertEquals(request.getPath(), "/v1/project-id/cloudservers/action");
@@ -87,7 +87,7 @@ public class ServerV1Tests extends AbstractTest {
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
 
 		List<String> serverIds = Lists.newArrayList("server-id-1", "server-id-2");
-		String jobId = osv3().compute().serversV1().reboot(serverIds, RebootType.HARD);
+		String jobId = osv3().ecs().servers().reboot(serverIds, RebootType.HARD);
 
 		RecordedRequest request = server.takeRequest();
 		assertEquals(request.getPath(), "/v1/project-id/cloudservers/action");
@@ -104,7 +104,7 @@ public class ServerV1Tests extends AbstractTest {
 		respondWith(200, "{\"job_id\": \"this-is-a-job-id\"}");
 
 		List<String> serverIds = Lists.newArrayList("server-id-1", "server-id-2");
-		String jobId = osv3().compute().serversV1().start(serverIds);
+		String jobId = osv3().ecs().servers().start(serverIds);
 
 		RecordedRequest request = server.takeRequest();
 		assertEquals(request.getPath(), "/v1/project-id/cloudservers/action");
@@ -136,7 +136,7 @@ public class ServerV1Tests extends AbstractTest {
 				.addMetadata("mkey", "mvalue")
 				.addMetadata("mkey2", "mvalue2")
 				.count(2).build();
-		String jobId = osv3().compute().serversV1().create(creation);
+		String jobId = osv3().ecs().servers().create(creation);
 
 		RecordedRequest request = server.takeRequest();
 		assertEquals(request.getPath(), "/v1/project-id/cloudservers");

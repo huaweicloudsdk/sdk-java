@@ -51,6 +51,7 @@ import com.huawei.openstack4j.openstack.antiddos.internal.AntiDDoSServices;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.CloudTraceV1Service;
 import com.huawei.openstack4j.openstack.cloud.trace.v2.internal.CloudTraceV2Service;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseServices;
+import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.maas.internal.MaaSService;
 import com.huawei.openstack4j.openstack.message.notification.internal.NotificationService;
 import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueService;
@@ -439,5 +440,12 @@ public interface OSClient<T extends OSClient<T>> {
 	 * @return the CloudEye service
 	 */
 	CloudEyeService cloudEye();
+	
+	
+	/**
+	 * Returns the CloudEye Service API
+	 * @return the CloudEye service
+	 */
+	ElasticComputeService ecs();
 
 }

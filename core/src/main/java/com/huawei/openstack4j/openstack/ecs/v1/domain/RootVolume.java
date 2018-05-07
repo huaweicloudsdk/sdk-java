@@ -13,24 +13,25 @@
  * 	License for the specific language governing permissions and limitations under    
  * 	the License.                                                                     
  *******************************************************************************/
-package com.huawei.openstack4j.openstack.compute.v1.domain;
+package com.huawei.openstack4j.openstack.ecs.v1.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.huawei.openstack4j.model.ModelEntity;
-import com.huawei.openstack4j.openstack.compute.v1.contants.VolumeType;
+import com.huawei.openstack4j.openstack.ecs.v1.contants.VolumeType;
 
 /**
- * Model represent attributes of Server Data Volume
+ * Model represent attributes of Server Root Volume
  *
  * @author QianBiao.NG
  * @date   2017-07-31 11:12:39
  */
-public class DataVolume implements ModelEntity {
+public class RootVolume implements ModelEntity {
 
 	private static final long serialVersionUID = 5294355671374520846L;
 
 	/**
 	 * 云服务器系统盘对应的磁盘类型，需要与系统所提供的磁盘类型相匹配。
+	
 		SATA：普通IO磁盘类型。
 		SAS：高IO磁盘类型。
 		SSD：超高IO磁盘类型。
@@ -42,7 +43,9 @@ public class DataVolume implements ModelEntity {
 
 	/**
 	 * 系统盘大小，容量单位为GB， 输入大小范围为[1,1024]。
+	
 		约束：
+		
 		系统盘大小取值应不小于镜像支持的系统盘的最小值(镜像的min_disk属性)。
 		若该参数没有指定或者指定为0，系统盘大小默认取值为镜像中系统盘的最小值(镜像的min_disk属性)。
 	 */
@@ -50,33 +53,23 @@ public class DataVolume implements ModelEntity {
 	Integer size;
 
 	/**
-	 * 创建共享磁盘的信息。
-		true：创建的磁盘为共享盘。
-		false：创建的磁盘为普通云硬盘。
+	 * 磁盘的产品信息。
 	 */
-	@JsonProperty("multiattach")
-	Boolean multiAttach;
+	@JsonProperty("extendparam")
+	VolumeExtendParam extendParam;
 
-	/**
-	 * 数据卷是否使用SCSI锁。
-	 * 如果使用，请将该字段值配置为“true”，否则，请勿填写该字段。
-	 */
-	@JsonProperty("hw:passthrough")
-	Boolean passthrough;
-
-	@java.beans.ConstructorProperties({ "type", "size", "multiAttach", "passthrough" })
-	public DataVolume(VolumeType type, Integer size, Boolean multiAttach, Boolean passthrough) {
+	@java.beans.ConstructorProperties({ "type", "size", "extendParam" })
+	public RootVolume(VolumeType type, Integer size, VolumeExtendParam extendParam) {
 		this.type = type;
 		this.size = size;
-		this.multiAttach = multiAttach;
-		this.passthrough = passthrough;
+		this.extendParam = extendParam;
 	}
 
-	public DataVolume() {
+	public RootVolume() {
 	}
 
-	public static DataVolumeBuilder builder() {
-		return new DataVolumeBuilder();
+	public static RootVolumeBuilder builder() {
+		return new RootVolumeBuilder();
 	}
 
 	public VolumeType getType() {
@@ -87,62 +80,51 @@ public class DataVolume implements ModelEntity {
 		return this.size;
 	}
 
-	public Boolean getMultiAttach() {
-		return this.multiAttach;
-	}
-
-	public Boolean getPassthrough() {
-		return this.passthrough;
+	public VolumeExtendParam getExtendParam() {
+		return this.extendParam;
 	}
 
 	@Override
 	public String toString() {
-		return "DataVolume(type=" + this.getType() + ", size=" + this.getSize() + ", multiAttach="
-				+ this.getMultiAttach() + ", passthrough=" + this.getPassthrough() + ")";
+		return "RootVolume(type=" + this.getType() + ", size=" + this.getSize() + ", extendParam="
+				+ this.getExtendParam() + ")";
 	}
 
-	public DataVolumeBuilder toBuilder() {
-		return new DataVolumeBuilder().type(this.type).size(this.size).multiAttach(this.multiAttach)
-				.passthrough(this.passthrough);
+	public RootVolumeBuilder toBuilder() {
+		return new RootVolumeBuilder().type(this.type).size(this.size).extendParam(this.extendParam);
 	}
 
-	public static class DataVolumeBuilder {
+	public static class RootVolumeBuilder {
 		private VolumeType type;
 		private Integer size;
-		private Boolean multiAttach;
-		private Boolean passthrough;
+		private VolumeExtendParam extendParam;
 
-		DataVolumeBuilder() {
+		RootVolumeBuilder() {
 		}
 
-		public DataVolume.DataVolumeBuilder type(VolumeType type) {
+		public RootVolume.RootVolumeBuilder type(VolumeType type) {
 			this.type = type;
 			return this;
 		}
 
-		public DataVolume.DataVolumeBuilder size(Integer size) {
+		public RootVolume.RootVolumeBuilder size(Integer size) {
 			this.size = size;
 			return this;
 		}
 
-		public DataVolume.DataVolumeBuilder multiAttach(Boolean multiAttach) {
-			this.multiAttach = multiAttach;
+		public RootVolume.RootVolumeBuilder extendParam(VolumeExtendParam extendParam) {
+			this.extendParam = extendParam;
 			return this;
 		}
 
-		public DataVolume.DataVolumeBuilder passthrough(Boolean passthrough) {
-			this.passthrough = passthrough;
-			return this;
-		}
-
-		public DataVolume build() {
-			return new DataVolume(type, size, multiAttach, passthrough);
+		public RootVolume build() {
+			return new RootVolume(type, size, extendParam);
 		}
 
 		@Override
 		public String toString() {
-			return "DataVolume.DataVolumeBuilder(type=" + this.type + ", size=" + this.size + ", multiAttach="
-					+ this.multiAttach + ", passthrough=" + this.passthrough + ")";
+			return "RootVolume.RootVolumeBuilder(type=" + this.type + ", size=" + this.size + ", extendParam="
+					+ this.extendParam + ")";
 		}
 	}
 }

@@ -67,12 +67,6 @@ public interface ComputeService extends RestService {
 	 */
 	ServerService servers();
 	
-	/**
-	 * Server V1 Service API
-	 *
-	 * @return the server service
-	 */
-	ServerV1Service serversV1();
 
 	/**
 	 * Quota-Set Service API

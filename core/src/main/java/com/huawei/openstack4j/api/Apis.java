@@ -34,6 +34,7 @@ import com.huawei.openstack4j.api.networking.NetworkingService;
 import com.huawei.openstack4j.api.senlin.SenlinService;
 import com.huawei.openstack4j.api.tacker.TackerService;
 import com.huawei.openstack4j.api.workflow.WorkflowService;
+import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 
 /**
@@ -229,6 +230,14 @@ public class Apis {
 	 */
 	public static CloudEyeService getCloudEyeService() {
 		return get(CloudEyeService.class);
+	}
+	
+	/**
+	 * Gets the Elastic Compute services API
+	 * @return the Elastic Compute services
+	 */
+	public static ElasticComputeService getElasticComputeService() {
+		return get(ElasticComputeService.class);
 	}
 
 	private static APIProvider initializeProvider() {

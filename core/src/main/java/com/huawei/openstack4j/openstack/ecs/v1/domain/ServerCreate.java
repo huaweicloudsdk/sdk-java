@@ -1,4 +1,4 @@
-package com.huawei.openstack4j.openstack.compute.v1.domain;
+package com.huawei.openstack4j.openstack.ecs.v1.domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;

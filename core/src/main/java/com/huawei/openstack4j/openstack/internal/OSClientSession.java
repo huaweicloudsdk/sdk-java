@@ -21,12 +21,12 @@ import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.huawei.openstack4j.api.Apis;
 import com.huawei.openstack4j.api.EndpointTokenProvider;
@@ -60,6 +60,7 @@ import com.huawei.openstack4j.model.identity.AuthVersion;
 import com.huawei.openstack4j.model.identity.URLResolverParams;
 import com.huawei.openstack4j.model.identity.v2.Access;
 import com.huawei.openstack4j.model.identity.v3.Token;
+import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.identity.internal.DefaultEndpointURLResolver;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 
@@ -402,6 +403,14 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 	 */
 	public TroveService trove() {
 		return Apis.getTroveServices();
+	}
+	
+	/**
+	 *
+	 * @return
+	 */
+	public ElasticComputeService ecs() {
+		return Apis.getElasticComputeService();
 	}
 
 	public static class OSClientSessionV2 extends OSClientSession<OSClientSessionV2, OSClientV2> implements OSClientV2 {
