@@ -52,6 +52,7 @@ public enum ServiceType {
 	Notification("SMN", "notification-message"),
 	MessageQueue("DMS", "distributed-message"),
 	MAAS("MaaS", "MaaS"),
+	CDN("cdn","cdn"),
 	
 	UNKNOWN("NA", "NA")
 	;

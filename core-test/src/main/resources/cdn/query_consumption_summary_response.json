@@ -1,0 +1,9 @@
+{
+	"domain_summary": {
+		"start_time": 1513094400000,
+		"end_time": 1513180799346,
+		"value": 835038583,
+		"stat_type": "flux_hit_rate",
+		"service_area": "mainland_china"
+	}
+}

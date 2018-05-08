@@ -1,0 +1,26 @@
+{
+    "id": "8a29d3f05d0cbeee015d0cc1333c0007",
+    "task_type": "preheating",
+    "status": "task_done",
+    "total": 4,
+    "processing": 2,
+    "succeed": 0,
+    "failed": 4,
+    "urls": [
+        {
+            "url": "https://www.xxx.cn/test/dir.png",
+            "id": "8a29d3f05d0cbeee015d0cc133440009",
+            "status": "failed",
+            "create_time": 1499157542180,
+            "task_id": "8a29d3f05d0cbeee015d0cc1333c0007"
+        },
+        {
+            "url": "http://www.xxx.com/test15.jpg",
+            "id": "8a29d3f05d0cbeee015d0cc133430008",
+            "status": "failed",
+            "create_time": 1499157542180,
+            "task_id": "8a29d3f05d0cbeee015d0cc1333c0007"
+        }
+    ],
+    "create_time": 1499157542180
+}

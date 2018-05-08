@@ -210,6 +210,9 @@ import com.huawei.openstack4j.openstack.artifact.internal.ArtifactServiceImpl;
 import com.huawei.openstack4j.openstack.artifact.internal.ToscaTemplatesArtifactServiceImpl;
 import com.huawei.openstack4j.openstack.barbican.internal.BarbicanServiceImpl;
 import com.huawei.openstack4j.openstack.barbican.internal.ContainerServiceImpl;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.LogService;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.StatisticService;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.CloudTraceV1Service;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.TraceService;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.TrackerService;
@@ -711,6 +714,12 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(VersionService.class, VersionService.class);
 		bind(com.huawei.openstack4j.openstack.maas.internal.TaskService.class,
 				com.huawei.openstack4j.openstack.maas.internal.TaskService.class);
+		
+		//cdn
+		bind(CdnServices.class,CdnServices.class);
+		bind(com.huawei.openstack4j.openstack.cdn.v1.internal.DomainService.class,com.huawei.openstack4j.openstack.cdn.v1.internal.DomainService.class);
+		bind(StatisticService.class,StatisticService.class);
+		bind(LogService.class,LogService.class);
 
 	}
 

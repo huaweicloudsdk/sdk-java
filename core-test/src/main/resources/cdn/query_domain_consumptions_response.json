@@ -1,0 +1,20 @@
+{
+	"domain": [
+		{
+			"value": 197400,
+			"start_time": 1513094400000,
+			"end_time": 1513180799346,
+			"stat_type": "flux",
+			"domain_name": "s4.donyd.com",
+			"service_area": "mainland_china"
+		},
+		{
+			"value": 42825,
+			"start_time": 1513094400000,
+			"end_time": 1513180799346,
+			"stat_type": "flux",
+			"domain_name": "s4.donyd.com",
+			"service_area": "mainland_china"
+		}
+	]
+}

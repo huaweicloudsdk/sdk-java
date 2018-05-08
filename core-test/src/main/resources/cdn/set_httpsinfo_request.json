@@ -1,0 +1,9 @@
+{
+    "https": {
+        "force_redirect_https": 0,
+        "https_status": 2,
+        "cert_name": "cdn_test_cert",
+        "certificate": "-----BEGIN CERTIFICATE----------END CERTIFICATE-----",
+        "private_key": "-----BEGIN RSA PRIVATE KEY---------END RSA PRIVATE KEY-----"
+    }
+}

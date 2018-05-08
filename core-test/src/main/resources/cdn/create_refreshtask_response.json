@@ -1,0 +1,14 @@
+{
+    "refreshTask": {
+        "id": "8a29d3f05d0c9fc3015d0ca1bdae0005",
+        "taskType": "refresh",
+        "status": "task_inprocess",
+        "total": 4,
+        "processing": 0,
+        "succeed": 0,
+        "failed": 0,
+        "create_time": 1499155459813,
+        "urls": ["https://www.xxx.com/test.jpg",
+                 "http://www.xxx.com/test2.jpg"]
+    }
+}

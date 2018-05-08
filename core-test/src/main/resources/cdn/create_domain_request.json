@@ -1,0 +1,13 @@
+{
+	"domain": {
+		"domain_name": "cdn-9b234.cn-north-1.myhwclouds.com",
+		"business_type": "web",
+		"sources": [
+			{
+				"ip_or_domain": "1.2.3.4",
+				"origin_type": "ipaddr",
+				"active_standby": 1
+			}
+		]
+	}
+}

@@ -48,6 +48,7 @@ import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.identity.v2.Access;
 import com.huawei.openstack4j.model.identity.v3.Token;
 import com.huawei.openstack4j.openstack.antiddos.internal.AntiDDoSServices;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.CloudTraceV1Service;
 import com.huawei.openstack4j.openstack.cloud.trace.v2.internal.CloudTraceV2Service;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseServices;
@@ -398,6 +399,12 @@ public interface OSClient<T extends OSClient<T>> {
 		 * @return the OTC {@link DatabaseServices} instance
 		 */
 		DatabaseServices database();
+		
+		/**
+		 * get the CDN service 
+		 * @return the OTC {@link DatabaseServices} instance
+		 */
+		CdnServices cdn();
 	}
 
 	/**

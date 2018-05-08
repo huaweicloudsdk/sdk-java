@@ -1,0 +1,13 @@
+{
+    "logs": [
+        {
+            "domain_name": "www.xxxx.com",
+            "start_time": "1498838400000",
+            "end_time": "1502380500000",
+            "name": "www.xxxx.com-2017080315",
+            "link": "www.xxxx.web",
+            "size":4096
+        }
+    ],
+    "total": 1
+}

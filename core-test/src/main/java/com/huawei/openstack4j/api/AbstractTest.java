@@ -88,6 +88,7 @@ public abstract class AbstractTest {
         MAAS(10008),
         NOTIFICATION(10010),
         MESSAGE_QUEUE(10011),
+        CDN(10012)
         ;
     	//@on
 

@@ -1,0 +1,27 @@
+{
+	"domain": {
+		"sources": [{
+			"domain_id": "ff80808260454e2601604eece675107b",
+			"ip_or_domain": "1.2.3.4",
+			"origin_type": "ipaddr",
+			"active_standby": 1
+		}],
+		"id": "ff80808260454e2601604eece675107b",
+		"user_domain_id": "38de6682b3024a1497d249ea45024dcb",
+		"domain_name": "cdn-9b234.cn-north-1.myhwclouds.com",
+		"business_type": "web",
+		"cname": "cdn-9b234.cn-north-1.myhwclouds.com.c.cdnhwc1.com",
+		"domain_status": "configuring",
+		"https_status": 1,
+		"description": null,
+		"create_time": 1513152634467,
+		"modify_time": 1513152634467,
+		"domain_origin_host": {
+			"domain_id": "ff80808260454e2601604eece675107b",
+			"origin_host_type": "customize",
+			"customize_domain": "test961.donyd.com"
+		},
+		"disabled": 0,
+		"locked": 0
+	}
+}

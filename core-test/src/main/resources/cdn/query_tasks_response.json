@@ -1,0 +1,31 @@
+{
+ "total": 2,
+ "tasks": [
+           {
+            "id": "8a29d3f05d0cbeee015d0cc1333c0007",
+            "task_type": "preheating",
+            "status": "task_done",
+            "total": 4,
+            "processing": 2,
+            "succeed": 0,
+            "failed": 4,
+            "create_time": 1499157542180,
+            "urls":["https://www.xxx.com/test.jpg",
+                 "http://www.xxx.com/test2.jpg"]
+
+           },
+           {
+            "id": "8a29d3f05d0caa0c015d0cb7cb190026",
+            "taskType": "preheating",
+            "status": "task_done",
+            "total": 4,
+            "processing": 0,
+            "succeed": 0,
+            "failed": 4,
+            "create_time": 1499156956800,
+            "urls":["https://www.xxx.com/test.jpg",
+                 "http://www.xxx.com/test2.jpg"]
+
+            }          
+           ]
+}

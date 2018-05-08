@@ -1,0 +1,7 @@
+{
+    "refreshTask": {
+        "type": "file",
+         "urls":["https://www.xxx.com/test.jpg",
+                 "http://www.xxx.com/test2.jpg"]
+    }
+}
