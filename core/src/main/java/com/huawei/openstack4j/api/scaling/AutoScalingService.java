@@ -30,4 +30,6 @@ public interface AutoScalingService extends RestService {
 	AutoScalingActivityLogService activityLogs();
 	
 	AutoScalingQuotaService quotas();
+	
+	AutoScalingLifecycleHookService lifecycleHook();
 }
