@@ -33,7 +33,7 @@ public class LogService extends BaseCdnServices {
 	 * @param queryDate
 	 * @param pageSize
 	 * @param pageNumber
-	 * @return
+	 * @return {@link Logs} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Logs queryLogs(String domainName, Long queryDate, Integer pageSize, Integer pageNumber) throws ServerCdnErrorResponseException{

@@ -16,7 +16,11 @@
 package com.huawei.openstack4j.openstack.cdn.v1.internal;
 
 import com.huawei.openstack4j.api.Apis;
-
+/**
+ * CDN Operations API implementation
+ * @author ChangjunZhao
+ * @date   2018-05-15
+ */
 public class CdnServices extends BaseCdnServices{
 
 	/**
@@ -40,7 +44,7 @@ public class CdnServices extends BaseCdnServices{
 	/**
 	 * Service implementation which provides methods for CDN Logs
 	 *
-	 * @return {@link StatisticService} instance
+	 * @return {@link LogService} instance
 	 */
 	public LogService logs(){
 		return Apis.get(LogService.class);

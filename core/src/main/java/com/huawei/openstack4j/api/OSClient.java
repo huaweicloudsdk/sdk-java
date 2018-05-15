@@ -402,7 +402,7 @@ public interface OSClient<T extends OSClient<T>> {
 		
 		/**
 		 * get the CDN service 
-		 * @return the OTC {@link DatabaseServices} instance
+		 * @return the OTC {@link CdnServices} instance
 		 */
 		CdnServices cdn();
 	}

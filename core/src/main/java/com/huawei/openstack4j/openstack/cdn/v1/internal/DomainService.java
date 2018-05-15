@@ -30,7 +30,6 @@ import com.huawei.openstack4j.openstack.cdn.v1.domain.Referer;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.RefreshTask;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.RefreshTaskCreate;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Source.Origin;
-import com.huawei.openstack4j.openstack.cdn.v1.domain.Task;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Task.Tasks;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.TaskDetail;
 import com.huawei.openstack4j.openstack.cdn.v1.exception.ServerCdnErrorResponseException;
@@ -44,8 +43,13 @@ public class DomainService extends BaseCdnServices{
 	
 	/**
 	 * Querying an Acceleration Domain Name
-	 * @param params
-	 * @return
+	 * @param params Params map supports the following parameters: <br/>
+	 * &nbsp;&nbsp;&nbsp;&nbsp;<b>domain_name</b>:Specifies the acceleration domain name, which is matched in a fuzzy manner. The value contains 1 to 255 characters.<br/>
+	 * &nbsp;&nbsp;&nbsp;&nbsp;<b>business_type</b>:Specifies the business type of the domain name. Values can be: <b>web</b> (image and small file distribution), <b>download</b> (large file download acceleration), and <b>video</b> (on-demand audio and video acceleration).<br/>
+	 * &nbsp;&nbsp;&nbsp;&nbsp;<b>domain_status</b>:Specifies the status of the acceleration domain name. Values include <b>online</b>: CDN is enabled; <b>offline</b>: CDN is disabled; <b>configuring</b>: CDN is being configured; <b>configure_failed</b>: the configuration failed; <b>checking</b>: the configuration is being audited; <b>check_failed</b>: the audit failed; <b>deleting</b>: the acceleration domain name is being deleted.<br/>
+	 * &nbsp;&nbsp;&nbsp;&nbsp;<b>page_size</b>:Specifies the number of acceleration domain names on each page. The value ranges from 10 to 1000.<br/>
+	 * &nbsp;&nbsp;&nbsp;&nbsp;<b>page_number</b>:Specifies the page number that is queried. The value ranges from 1 to 65535.
+	 * @return {@link Domains} instance
 	 */
 	public Domains list(Map<String, String> params){
 		Preconditions.checkNotNull(params.get("page_size"), "parameter `page_size` should not be null");
@@ -62,7 +66,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Creating an Acceleration Domain Name
 	 * @param creation
-	 * @return
+	 * @return {@link Domain} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Domain create(DomainCreate creation) throws ServerCdnErrorResponseException{
@@ -77,7 +81,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Deleting an Acceleration Domain Name
 	 * @param domainId
-	 * @return
+	 * @return {@link Domain} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Domain delete(String domainId) throws ServerCdnErrorResponseException{
@@ -88,7 +92,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Enabling an Acceleration Domain Name
 	 * @param domainId
-	 * @return
+	 * @return {@link Domain} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Domain enable(String domainId) throws ServerCdnErrorResponseException{
@@ -99,7 +103,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Disabling an Acceleration Domain Name
 	 * @param domainId
-	 * @return
+	 * @return {@link Domain} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Domain disable(String domainId) throws ServerCdnErrorResponseException{
@@ -110,7 +114,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Querying Details About an Acceleration Domain Name
 	 * @param domainId
-	 * @return
+	 * @return {@link Domain} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Domain getDetail(String domainId) throws ServerCdnErrorResponseException{
@@ -122,7 +126,7 @@ public class DomainService extends BaseCdnServices{
 	 * Modifying Information About the Origin Server
 	 * @param domainId
 	 * @param origin
-	 * @return
+	 * @return {@link Origin} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Origin setOrigin(String domainId, Origin origin) throws ServerCdnErrorResponseException{
@@ -134,7 +138,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Querying a Retrieval Host
 	 * @param domainId
-	 * @return
+	 * @return {@link OriginHost} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public OriginHost getOriginHost(String domainId) throws ServerCdnErrorResponseException{
@@ -146,7 +150,7 @@ public class DomainService extends BaseCdnServices{
 	 * Modifying the Configuration of the Retrieval Host
 	 * @param domainId
 	 * @param originHost
-	 * @return
+	 * @return {@link OriginHost} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public OriginHost setOriginHost(String domainId, OriginHost originHost) throws ServerCdnErrorResponseException{
@@ -160,7 +164,7 @@ public class DomainService extends BaseCdnServices{
 	 * Configuring a Referrer List
 	 * @param domainId
 	 * @param referer
-	 * @return
+	 * @return {@link Referer} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Referer setReferer(String domainId, Referer referer) throws ServerCdnErrorResponseException{
@@ -173,7 +177,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Querying a Referrer List
 	 * @param domainId
-	 * @return
+	 * @return {@link Referer} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Referer getReferer(String domainId) throws ServerCdnErrorResponseException{
@@ -185,7 +189,7 @@ public class DomainService extends BaseCdnServices{
 	 * Configuring a Cache Rule
 	 * @param domainId
 	 * @param cacheConfig
-	 * @return
+	 * @return {@link CacheConfig} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public CacheConfig setCacheConfig(String domainId, CacheConfig cacheConfig) throws ServerCdnErrorResponseException{
@@ -197,7 +201,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Querying a Cache Rule
 	 * @param domainId
-	 * @return
+	 * @return {@link CacheConfig} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public CacheConfig getCacheConfig(String domainId) throws ServerCdnErrorResponseException{
@@ -209,7 +213,7 @@ public class DomainService extends BaseCdnServices{
 	 * Configuring HTTPS
 	 * @param domainId
 	 * @param httpsInfo
-	 * @return
+	 * @return {@link HttpsInfo} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public HttpsInfo setHttpsInfo(String domainId, HttpsInfo httpsInfo) throws ServerCdnErrorResponseException{
@@ -223,7 +227,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Querying HTTPS Configurations
 	 * @param domainId
-	 * @return
+	 * @return {@link HttpsInfo} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public HttpsInfo getHttpsInfo(String domainId) throws ServerCdnErrorResponseException{
@@ -234,7 +238,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Creating a Cache Refreshing Task
 	 * @param creation
-	 * @return
+	 * @return {@link RefreshTask} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public RefreshTask createRefreshTask(RefreshTaskCreate creation) throws ServerCdnErrorResponseException{
@@ -246,7 +250,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Creating a Preheating Task
 	 * @param creation
-	 * @return
+	 * @return {@link PreheatingTask} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public PreheatingTask createPreheatingTask(PreheatingTaskCreate creation) throws ServerCdnErrorResponseException{
@@ -258,7 +262,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Querying a Cache Refreshing or Preheating Task
 	 * @param params
-	 * @return
+	 * @return {@link Tasks} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Tasks queryTasks(Map<String, String> params) throws ServerCdnErrorResponseException{
@@ -276,7 +280,7 @@ public class DomainService extends BaseCdnServices{
 	/**
 	 * Querying Details About a Cache Refreshing or Preheating Task
 	 * @param taskId
-	 * @return
+	 * @return {@link TaskDetail} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public TaskDetail getTaskDetail(String taskId, int pageSize, int pageNumber) throws ServerCdnErrorResponseException{

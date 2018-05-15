@@ -22,11 +22,11 @@ import com.huawei.openstack4j.openstack.cdn.v1.domain.Bandwidth;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.BandwidthDetail;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.DomainConsumption;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.DomainConsumption.DomainConsumptions;
-import com.huawei.openstack4j.openstack.cdn.v1.exception.ServerCdnErrorResponseException;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.DomainSummary;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.DomainSummaryDetail;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.Flux;
 import com.huawei.openstack4j.openstack.cdn.v1.domain.FluxDetail;
+import com.huawei.openstack4j.openstack.cdn.v1.exception.ServerCdnErrorResponseException;
 
 /**
  * CDN Statistics Service
@@ -39,7 +39,7 @@ public class StatisticService extends BaseCdnServices {
 	/**
 	 * Querying the Total Network Traffic
 	 * @param domainName
-	 * @return
+	 * @return {@link Flux} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Flux queryTotalNetworkTraffic(String domainName) throws ServerCdnErrorResponseException{
@@ -52,7 +52,7 @@ public class StatisticService extends BaseCdnServices {
 	 * @param domainName
 	 * @param startTime
 	 * @param endTime
-	 * @return
+	 * @return {@link Flux} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Flux queryTotalNetworkTraffic(String domainName, Long startTime, Long endTime) throws ServerCdnErrorResponseException{
@@ -71,7 +71,7 @@ public class StatisticService extends BaseCdnServices {
 	/**
 	 * Querying Details of Network Traffic
 	 * @param domainName
-	 * @return
+	 * @return {@link FluxDetail} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public FluxDetail queryDetailsOfNetworkTraffic(String domainName) throws ServerCdnErrorResponseException{
@@ -84,7 +84,7 @@ public class StatisticService extends BaseCdnServices {
 	 * @param startTime
 	 * @param endTime
 	 * @param interval
-	 * @return
+	 * @return {@link FluxDetail} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public FluxDetail queryDetailsOfNetworkTraffic(String domainName, Long startTime, Long endTime, Integer interval) throws ServerCdnErrorResponseException{
@@ -106,7 +106,7 @@ public class StatisticService extends BaseCdnServices {
 	/**
 	 * Querying the Peak Bandwidth Value
 	 * @param domainName
-	 * @return
+	 * @return {@link Bandwidth} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Bandwidth queryPeakBandwidth(String domainName) throws ServerCdnErrorResponseException{
@@ -119,7 +119,7 @@ public class StatisticService extends BaseCdnServices {
 	 * @param domainName
 	 * @param startTime
 	 * @param endTime
-	 * @return
+	 * @return {@link Bandwidth} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public Bandwidth queryPeakBandwidth(String domainName, Long startTime, Long endTime) throws ServerCdnErrorResponseException{
@@ -139,7 +139,7 @@ public class StatisticService extends BaseCdnServices {
 	/**
 	 * Querying Details of the Network Bandwidth
 	 * @param domainName
-	 * @return
+	 * @return {@link BandwidthDetail} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public BandwidthDetail queryDetailsOfNetworkBandwidth(String domainName) throws ServerCdnErrorResponseException{
@@ -153,7 +153,7 @@ public class StatisticService extends BaseCdnServices {
 	 * @param startTime
 	 * @param endTime
 	 * @param interval
-	 * @return
+	 * @return {@link BandwidthDetail} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public BandwidthDetail queryDetailsOfNetworkBandwidth(String domainName, Long startTime, Long endTime,
@@ -177,7 +177,7 @@ public class StatisticService extends BaseCdnServices {
 	 * Querying Consumption Summary
 	 * @param domainName
 	 * @param statType
-	 * @return
+	 * @return {@link DomainSummary} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public DomainSummary queryConsumptionSummary(String domainName, String statType) throws ServerCdnErrorResponseException{
@@ -191,7 +191,7 @@ public class StatisticService extends BaseCdnServices {
 	 * @param startTime
 	 * @param endTime
 	 * @param serviceArea
-	 * @return
+	 * @return {@link DomainSummary} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public DomainSummary queryConsumptionSummary(String domainName, String statType, Long startTime, Long endTime,
@@ -216,7 +216,7 @@ public class StatisticService extends BaseCdnServices {
 	 * Querying Consumption Details
 	 * @param domainName
 	 * @param statType
-	 * @return
+	 * @return {@link DomainSummaryDetail} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public DomainSummaryDetail queryConsumptionSummaryDetails(String domainName, String statType) throws ServerCdnErrorResponseException{
@@ -231,7 +231,7 @@ public class StatisticService extends BaseCdnServices {
 	 * @param endTime
 	 * @param serviceArea
 	 * @param interval
-	 * @return
+	 * @return {@link DomainSummaryDetail} instance
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public DomainSummaryDetail queryConsumptionSummaryDetails(String domainName, String statType, Long startTime, Long endTime,
@@ -259,7 +259,7 @@ public class StatisticService extends BaseCdnServices {
 	 * Querying Consumption of Each Domain Name
 	 * @param domainName
 	 * @param statType
-	 * @return
+	 * @return list of {@link DomainConsumption} instances
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public List<DomainConsumption> queryDomainConsumptions(String domainName, String statType) throws ServerCdnErrorResponseException{
@@ -273,7 +273,7 @@ public class StatisticService extends BaseCdnServices {
 	 * @param startTime
 	 * @param endTime
 	 * @param serviceArea
-	 * @return
+	 * @return list of {@link DomainConsumption} instances
 	 * @throws ServerCdnErrorResponseException
 	 */
 	public List<DomainConsumption> queryDomainConsumptions(String domainName, String statType, Long startTime, Long endTime,
