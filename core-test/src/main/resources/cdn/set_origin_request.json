@@ -1,0 +1,11 @@
+{
+    "origin": {
+        "sources": [
+            {
+                "ip_or_domain": "1.2.3.4",
+                "origin_type": "ipaddr",
+                "active_standby":1
+            }
+        ]
+    }
+}

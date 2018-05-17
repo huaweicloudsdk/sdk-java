@@ -1,0 +1,16 @@
+{
+    "cache_config":
+    {
+        "ignore_url_parameter":false,
+        "rules":[
+        {
+            
+            "rule_type":1,
+            "content":".jpg;.png",
+            "ttl":2,
+            "ttl_type":3,
+            "priority":1
+        }
+        ]
+    }
+}

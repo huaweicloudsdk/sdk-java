@@ -981,6 +981,33 @@
         "type": "notification-message",
         "id": "2241f6c6096a11e793ae92361f002671",
         "name": "DMS"
+      }, {
+        "endpoints": [
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10012",
+            "region": "RegionOne",
+            "interface": "admin",
+            "id": "7202c1c716f74468b6d22a1a5f83e38d"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10012",
+            "region": "RegionOne",
+            "interface": "internal",
+            "id": "373cf9b0185c4406bd7cae1a1e9e1b95"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10012",
+            "region": "RegionOne",
+            "interface": "public",
+            "id": "58bc7c3c2c66464b99ec20a398492bce"
+          }
+        ],
+        "type": "cdn",
+        "id": "511b94ce0482484ea09028091dd5e9a5",
+        "name": "cdn"
       }
     ],
     "extras": {},

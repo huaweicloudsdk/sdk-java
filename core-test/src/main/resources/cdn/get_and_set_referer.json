@@ -1,0 +1,7 @@
+{
+    "referer": {
+        "referer_type": 1,
+        "referer_list": "www.xxx.com;www.xxx2.com",
+        "include_empty": false
+    }
+}

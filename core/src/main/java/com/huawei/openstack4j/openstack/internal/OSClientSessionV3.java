@@ -42,6 +42,7 @@ import com.huawei.openstack4j.model.identity.URLResolverParams;
 import com.huawei.openstack4j.model.identity.v3.Token;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneAuth.AuthScope;
 import com.huawei.openstack4j.openstack.antiddos.internal.AntiDDoSServices;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.CloudTraceV1Service;
 import com.huawei.openstack4j.openstack.cloud.trace.v2.internal.CloudTraceV2Service;
 import com.huawei.openstack4j.openstack.common.Auth;
@@ -334,5 +335,13 @@ public class OSClientSessionV3 extends OSClientSession<OSClientSessionV3, OSClie
 	@Override
 	public DatabaseServices database() {
 		return Apis.get(DatabaseServices.class);
+	}
+	
+	/*
+	 * {@inheritDoc}
+	 */
+	@Override
+	public CdnServices cdn() {
+		return Apis.get(CdnServices.class);
 	}
 }

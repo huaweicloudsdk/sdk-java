@@ -1,0 +1,8 @@
+{
+    "https": {
+        "force_redirect_https": 0,
+        "https_status": 1,
+        "cert_name": "cdn_test_cert",
+        "certificate": "-----BEGIN CERTIFICATE----------END CERTIFICATE-----"
+    }
+}

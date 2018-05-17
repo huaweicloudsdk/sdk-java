@@ -1,0 +1,13 @@
+{
+	"domain_summary_detail": {
+		"start_time": 1498838400000,
+		"end_time": 1502380500000,
+		"interval": 300,
+		"stat_type": "bs_flux",
+		"values": [
+			835038583,
+			835038584
+		],
+		"service_area": "outside_mainland_china"
+	}
+}

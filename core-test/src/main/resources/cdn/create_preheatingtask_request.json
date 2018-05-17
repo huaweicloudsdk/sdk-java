@@ -1,0 +1,9 @@
+{
+    "preheatingTask": {
+        "urls":["http://www.xxx.com/test15.jpg",
+                "https://www.xxx.cn/test/di.png",
+                "http://www.xxx.com/test17/test.doc",
+                "http://www.xxx.com/test16.jpg"
+                ]
+    }
+}

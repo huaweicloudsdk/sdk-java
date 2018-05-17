@@ -1,0 +1,55 @@
+{
+	"total": 2,
+	"domains": [{
+			"sources": [{
+				"domain_id": "8abe97de604d998f01604e7490130000",
+				"ip_or_domain": "1.2.3.4",
+				"origin_type": "ipaddr",
+				"active_standby": 1
+			}],
+			"id": "8abe97de604d998f01604e7490130000",
+			"user_domain_id": "test_domain_id",
+			"domain_name": "hec3.donyd.com",
+			"business_type": "download",
+			"cname": "hec3.donyd.com.c.cdnhwc1.com",
+			"domain_status": "online",
+			"https_status": 1,
+			"description": null,
+			"create_time": 1513144745350,
+			"modify_time": 1513234498830,
+			"domain_origin_host": {
+				"domain_id": "8abe97de604d998f01604e7490130000",
+				"origin_host_type": "customize",
+				"customize_domain": "test961.donyd.com"
+			},
+			"disabled": 0,
+			"locked": 0
+		},
+		{
+			"sources": [{
+				"domain_id": "8abe97de604e7b9101604f1a45da0110",
+				"active_standby": 1,
+				"origin_type": "ipaddr",
+				"ip_or_domain": "121.40.38.62"
+			}],
+			"id": "8abe97de604e7b9101604f1a45da0110",
+			"user_domain_id": "test_domain_id",
+			"domain_name": "jiang20171213.donyd.com",
+			"business_type": "download",
+			"origin_type": "ipaddr",
+			"cname": "test.donyd.com.c.cdnhwc1.com",
+			"domain_status": "online",
+			"https_status": 0,
+			"description": null,
+			"create_time": 1513155607388,
+			"modify_time": 1513155995904,
+			"domain_origin_host": {
+				"domain_id": "8abe97de604e7b9101604f1a45da0110",
+				"origin_host_type": "accelerate",
+				"customize_domain": "jiang20171213.donyd.com"
+			},
+			"disabled": 0,
+			"locked": 0
+		}
+	]
+}

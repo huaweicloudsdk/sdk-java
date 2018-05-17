@@ -1,0 +1,12 @@
+{
+    "origin": {
+        "sources": [
+            {
+                "domain_id":"8abe97de604d998f01604e7490130000",
+                "ip_or_domain": "1.2.3.4",
+                "origin_type": "ipaddr",
+                "active_standby":1
+            }
+        ]
+    }
+}
