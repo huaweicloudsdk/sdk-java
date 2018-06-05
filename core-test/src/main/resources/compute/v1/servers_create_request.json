@@ -37,7 +37,6 @@
     } ],
     "availability_zone" : "eu-de-01",
     "metadata" : {
-      "mkey2" : "mvalue2",
       "mkey" : "mvalue"
     },
     "tags" : [ "key.value" ]

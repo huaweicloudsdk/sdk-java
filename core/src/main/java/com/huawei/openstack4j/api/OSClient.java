@@ -48,15 +48,16 @@ import com.huawei.openstack4j.model.common.Identifier;
 import com.huawei.openstack4j.model.identity.v2.Access;
 import com.huawei.openstack4j.model.identity.v3.Token;
 import com.huawei.openstack4j.openstack.antiddos.internal.AntiDDoSServices;
-import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.CloudTraceV1Service;
 import com.huawei.openstack4j.openstack.cloud.trace.v2.internal.CloudTraceV2Service;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseServices;
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
 import com.huawei.openstack4j.openstack.maas.internal.MaaSService;
 import com.huawei.openstack4j.openstack.message.notification.internal.NotificationService;
 import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
+import com.huawei.openstack4j.openstack.vpc.v2.internal.VirtualPrivateCloudService;
 
 /**
  * A client which has been identified. Any calls spawned from this session will
@@ -345,66 +346,7 @@ public interface OSClient<T extends OSClient<T>> {
 		
 		public  OSClientV3  withToken(String tokenId);		
 
-	/**
-		 * get the Auto Scaling service 
-		 * @return the OTC AutoScaling Service
-		 */
-		AutoScalingService autoScaling();
-		
-		/**
-		 * get the Elastic Load Balance service 
-		 * @return the OTC Elastic Load Balance service
-		 */
-		ELBService loadBalancer();
-		
-		/**
-		 * get the Cloud Trace V1 service 
-		 * @return the OTC Cloud Trace V1 service instance
-		 */
-		CloudTraceV1Service cloudTraceV1();
-		
-		/**
-		 * get the Cloud Trace V2 service 
-		 * @return the OTC Cloud Trace V2 service instance
-		 */
-		CloudTraceV2Service cloudTraceV2();
-		
-		
-		/**
-		 * get the AntiDDos service 
-		 * @return the OTC AntiDDos service instance
-		 */
-		AntiDDoSServices antiDDoS();
-		
-		/**
-		 * get the Simple Message Notification service 
-		 * @return the OTC Simple Message Notification service instance
-		 */
-		NotificationService notification();
-		
-		/**
-		 * get the Distributed Message service 
-		 * @return the OTC Distributed Message service instance
-		 */
-		MessageQueueService messageQueue();
-		
-		/**
-		 * get the MaaS service 
-		 * @return the OTC MaaS service instance
-		 */
-		MaaSService maas();
-		
-		/**
-		 * get the Database service 
-		 * @return the OTC {@link DatabaseServices} instance
-		 */
-		DatabaseServices database();
-		
-		/**
-		 * get the CDN service 
-		 * @return the OTC {@link CdnServices} instance
-		 */
-		CdnServices cdn();
+
 	}
 
 	/**
@@ -448,11 +390,131 @@ public interface OSClient<T extends OSClient<T>> {
 	 */
 	CloudEyeService cloudEye();
 	
+
+	/**
+	 * get the Auto Scaling service 
+	 * @return the OTC AutoScaling Service
+	 */
+	AutoScalingService autoScaling();
 	
 	/**
-	 * Returns the CloudEye Service API
-	 * @return the CloudEye service
+	 * get the Elastic Load Balance service 
+	 * @return the OTC Elastic Load Balance service
 	 */
-	ElasticComputeService ecs();
+	ELBService loadBalancer();
+	
+	/**
+	 * get the Cloud Trace V1 service 
+	 * @return the OTC Cloud Trace V1 service instance
+	 */
+	CloudTraceV1Service cloudTraceV1();
+	
+	/**
+	 * get the Cloud Trace V2 service 
+	 * @return the OTC Cloud Trace V2 service instance
+	 */
+	CloudTraceV2Service cloudTraceV2();
+	
+	
+	/**
+	 * get the AntiDDos service 
+	 * @return the OTC AntiDDos service instance
+	 */
+	AntiDDoSServices antiDDoS();
+	
+	/**
+	 * get the Simple Message Notification service 
+	 * @return the OTC Simple Message Notification service instance
+	 */
+	NotificationService notification();
+	
+	/**
+	 * get the Distributed Message service 
+	 * @return the OTC Distributed Message service instance
+	 */
+	MessageQueueService messageQueue();
+	
+	/**
+	 * get the MaaS service 
+	 * @return the OTC MaaS service instance
+	 */
+	MaaSService maas();
+	
+	/**
+	 * get the Database service 
+	 * @return the OTC {@link DatabaseServices} instance
+	 */
+	DatabaseServices database();
+	
+	/**
+	 * get the CDN service 
+	 * @return the OTC {@link CdnServices} instance
+	 */
+	CdnServices cdn();
+
+	 
+	 /**
+	  * Returns the ElasticCompute Service API
+	  * @return the ElasticCompute service
+	  */
+	 com.huawei.openstack4j.openstack.ecs.v1_1.internal.ElasticComputeService ecsV1_1();
+	 
+	 /**
+	  * Returns the ElasticVolume Service API
+	  * @return the ElasticVolume service
+	  */
+//	 ElasticVolumeService evs();
+	 
+	 /**
+	  * Returns the ElasticVolume Service API
+	  * @return the ElasticVolume service
+	  */
+	 com.huawei.openstack4j.openstack.evs.v2_1.internal.ElasticVolumeService evsV2_1();
+	 
+
+	 /**
+	  * Returns the VirtualPrivateCloud Service API
+	  * @return the VirtualPrivateCloudService
+	  */
+	 VirtualPrivateCloudService vpcV2();
+	 
+	 /**
+	  * Returns the VirtualPrivateCloud Service API
+	  * @return the VirtualPrivateCloudService
+	  */
+//	 com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService vpc();
+	 
+	 /**
+	  * Returns the ElasticCompute Service API
+	  * @return the ElasticCompute service
+	  */
+	 ElasticComputeService ecs();
+     
+	 
+	
+	/**
+	 * OpenStack4j Client which authenticates against version AKSK
+	 */
+	public interface OSClientAKSK extends OSClient<OSClient.OSClientAKSK> {
+
+		/**
+		 * create a AKSK OSClient with required credentials 
+		 * 
+		 * @param accessKey					Access key
+		 * @param secretKey					Secret key
+		 * @param region					region 
+		 * @param projectId					user project id
+		 * @param serviceDomainName			cloud service domain, example: myhwclouds.com
+		 * @return
+		 */
+		public OSClientAKSK credentials(String accessKey, String secretKey, String region, String projectId, String serviceDomainName);
+
+		/**
+		 * @param config
+		 */
+		public OSClientAKSK useConfig(Config config);
+		
+		
+	}
 
 }

@@ -19,7 +19,6 @@ package com.huawei.openstack4j.openstack.provider;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
-
 import com.huawei.openstack4j.api.APIProvider;
 import com.huawei.openstack4j.api.artifact.ArtifactService;
 import com.huawei.openstack4j.api.artifact.ToscaTemplatesArtifactService;
@@ -138,8 +137,12 @@ import com.huawei.openstack4j.api.networking.ext.FirewallRuleService;
 import com.huawei.openstack4j.api.networking.ext.FirewallService;
 import com.huawei.openstack4j.api.networking.ext.HealthMonitorService;
 import com.huawei.openstack4j.api.networking.ext.HealthMonitorV2Service;
+//import com.huawei.openstack4j.api.networking.ext.LbCertificateV2Service;
+//import com.huawei.openstack4j.api.networking.ext.LbPolicyV2Service;
 import com.huawei.openstack4j.api.networking.ext.LbPoolService;
 import com.huawei.openstack4j.api.networking.ext.LbPoolV2Service;
+//import com.huawei.openstack4j.api.networking.ext.LbRuleV2Service;
+//import com.huawei.openstack4j.api.networking.ext.LbWhitelistV2Service;
 import com.huawei.openstack4j.api.networking.ext.LbaasV2Service;
 import com.huawei.openstack4j.api.networking.ext.ListenerV2Service;
 import com.huawei.openstack4j.api.networking.ext.LoadBalancerService;
@@ -151,10 +154,12 @@ import com.huawei.openstack4j.api.scaling.AutoScalingActivityLogService;
 import com.huawei.openstack4j.api.scaling.AutoScalingConfigService;
 import com.huawei.openstack4j.api.scaling.AutoScalingGroupInstanceService;
 import com.huawei.openstack4j.api.scaling.AutoScalingGroupService;
+//import com.huawei.openstack4j.api.scaling.AutoScalingInformService;
 import com.huawei.openstack4j.api.scaling.AutoScalingLifecycleHookService;
 import com.huawei.openstack4j.api.scaling.AutoScalingPolicyService;
 import com.huawei.openstack4j.api.scaling.AutoScalingQuotaService;
 import com.huawei.openstack4j.api.scaling.AutoScalingService;
+//import com.huawei.openstack4j.api.scaling.AutoScalingTagService;
 import com.huawei.openstack4j.api.senlin.SenlinActionService;
 import com.huawei.openstack4j.api.senlin.SenlinBuildInfoService;
 import com.huawei.openstack4j.api.senlin.SenlinClusterPolicyService;
@@ -255,6 +260,7 @@ import com.huawei.openstack4j.openstack.dns.v2.internal.DNSServiceImpl;
 import com.huawei.openstack4j.openstack.dns.v2.internal.PTRServiceImpl;
 import com.huawei.openstack4j.openstack.dns.v2.internal.RecordsetServiceImpl;
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
+import com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService;
 import com.huawei.openstack4j.openstack.gbp.internal.ExternalPolicyServiceImpl;
 import com.huawei.openstack4j.openstack.gbp.internal.ExternalSegmentServiceImpl;
 import com.huawei.openstack4j.openstack.gbp.internal.GbpServiceImpl;
@@ -354,8 +360,12 @@ import com.huawei.openstack4j.openstack.networking.internal.ext.FirewallRuleServ
 import com.huawei.openstack4j.openstack.networking.internal.ext.FirewallServiceImpl;
 import com.huawei.openstack4j.openstack.networking.internal.ext.HealthMonitorServiceImpl;
 import com.huawei.openstack4j.openstack.networking.internal.ext.HealthMonitorV2ServiceImpl;
+//import com.huawei.openstack4j.openstack.networking.internal.ext.LbCertificateServiceImpl;
+//import com.huawei.openstack4j.openstack.networking.internal.ext.LbPolicyServiceImpl;
 import com.huawei.openstack4j.openstack.networking.internal.ext.LbPoolServiceImpl;
 import com.huawei.openstack4j.openstack.networking.internal.ext.LbPoolV2ServiceImpl;
+//import com.huawei.openstack4j.openstack.networking.internal.ext.LbRuleServiceImpl;
+//import com.huawei.openstack4j.openstack.networking.internal.ext.LbWhitelistServiceImpl;
 import com.huawei.openstack4j.openstack.networking.internal.ext.LbaasV2ServiceImpl;
 import com.huawei.openstack4j.openstack.networking.internal.ext.ListenerV2ServiceImpl;
 import com.huawei.openstack4j.openstack.networking.internal.ext.LoadBalancerServiceImpl;
@@ -367,10 +377,12 @@ import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingActivityLogS
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingConfigServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingGroupInstanceServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingGroupServiceImpl;
+//import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingInfromServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingLifecycleHookServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingPolicyServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingQuotaServiceImpl;
 import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingServiceImpl;
+//import com.huawei.openstack4j.openstack.scaling.internal.AutoScalingTagServiceImpl;
 import com.huawei.openstack4j.openstack.senlin.internal.SenlinActionServiceImpl;
 import com.huawei.openstack4j.openstack.senlin.internal.SenlinBuildInfoServiceImpl;
 import com.huawei.openstack4j.openstack.senlin.internal.SenlinClusterPolicyServiceImpl;
@@ -419,6 +431,9 @@ import com.huawei.openstack4j.openstack.trove.internal.TroveDatabaseParamService
 import com.huawei.openstack4j.openstack.trove.internal.TroveInstanceFlavorService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveVersionService;
+import com.huawei.openstack4j.openstack.vpc.v2.internal.BandWidthService;
+import com.huawei.openstack4j.openstack.vpc.v2.internal.PublicIpService;
+import com.huawei.openstack4j.openstack.vpc.v2.internal.VirtualPrivateCloudService;
 import com.huawei.openstack4j.openstack.workflow.internal.ActionDefinitionServiceImpl;
 import com.huawei.openstack4j.openstack.workflow.internal.WorkbookDefinitionServiceImpl;
 import com.huawei.openstack4j.openstack.workflow.internal.WorkflowDefinitionServiceImpl;
@@ -463,12 +478,21 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(FlavorService.class, FlavorServiceImpl.class);
 		bind(ComputeImageService.class, ComputeImageServiceImpl.class);
 		bind(ServerService.class, ServerServiceImpl.class);
-		
 		// new ecs v1
 		bind(ElasticComputeService.class, ElasticComputeService.class);
-		bind(com.huawei.openstack4j.openstack.ecs.v1.internal.ServerService.class, 
-				com.huawei.openstack4j.openstack.ecs.v1.internal.ServerService.class);
-		
+		bind(VirtualPrivateCloudService.class, VirtualPrivateCloudService.class);
+		bind(com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService.class, com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService.class);
+		bind(com.huawei.openstack4j.openstack.vpc.v1.internal.PublicIpService.class, com.huawei.openstack4j.openstack.vpc.v1.internal.PublicIpService.class);
+		bind(PublicIpService.class, PublicIpService.class);
+		bind(BandWidthService.class, BandWidthService.class);
+		bind(com.huawei.openstack4j.openstack.ecs.v1.internal.JobService.class, com.huawei.openstack4j.openstack.ecs.v1.internal.JobService.class);
+		bind(com.huawei.openstack4j.openstack.ecs.v1_1.internal.ElasticComputeService.class, com.huawei.openstack4j.openstack.ecs.v1_1.internal.ElasticComputeService.class);
+		bind(com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService.class, com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService.class);
+		bind(com.huawei.openstack4j.openstack.evs.v2_1.internal.ElasticVolumeService.class, com.huawei.openstack4j.openstack.evs.v2_1.internal.ElasticVolumeService.class);
+		bind(com.huawei.openstack4j.openstack.ecs.v1.internal.CloudServerService.class, com.huawei.openstack4j.openstack.ecs.v1.internal.CloudServerService.class);
+		bind(com.huawei.openstack4j.openstack.ecs.v1_1.internal.CloudServerService.class, com.huawei.openstack4j.openstack.ecs.v1_1.internal.CloudServerService.class);
+		bind(com.huawei.openstack4j.openstack.evs.v2.internal.VolumeService.class, com.huawei.openstack4j.openstack.evs.v2.internal.VolumeService.class);
+		bind(com.huawei.openstack4j.openstack.evs.v2_1.internal.VolumeService.class, com.huawei.openstack4j.openstack.evs.v2_1.internal.VolumeService.class);
 		bind(QuotaSetService.class, QuotaSetServiceImpl.class);
 		bind(HostService.class, HostServiceImpl.class);
 		bind(NetworkingService.class, NetworkingServiceImpl.class);
@@ -595,7 +619,13 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(ListenerV2Service.class, ListenerV2ServiceImpl.class);
 		bind(HealthMonitorV2Service.class, HealthMonitorV2ServiceImpl.class);
 		bind(LbPoolV2Service.class, LbPoolV2ServiceImpl.class);
-
+		//lbass
+//		bind(LbPolicyV2Service.class, LbPolicyServiceImpl.class);
+//		bind(LbRuleV2Service.class, LbRuleServiceImpl.class);
+//		bind(LbWhitelistV2Service.class, LbWhitelistServiceImpl.class);
+//		bind(LbCertificateV2Service.class, LbCertificateServiceImpl.class);
+		
+		
 		// trove
 		bind(TroveService.class, TroveService.class);
 		bind(TroveInstanceFlavorService.class, TroveInstanceFlavorService.class);
@@ -668,7 +698,9 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(AutoScalingActivityLogService.class, AutoScalingActivityLogServiceImpl.class);
 		bind(AutoScalingQuotaService.class, AutoScalingQuotaServiceImpl.class);
 		bind(AutoScalingLifecycleHookService.class, AutoScalingLifecycleHookServiceImpl.class);		
-
+//		bind(AutoScalingTagService.class, AutoScalingTagServiceImpl.class);
+//		bind(AutoScalingInformService.class, AutoScalingInfromServiceImpl.class);
+		
 		// load balance
 		bind(ELBService.class, ELBServiceImpl.class);
 		bind(ELBLoadBalancerService.class, ELBLoadBalancerServiceImpl.class);
@@ -678,7 +710,8 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(ELBQuotaService.class, ELBQuotaServiceImpl.class);
 		bind(ELBCertificateService.class, ELBCertificateSeviceImpl.class);
 		bind(AsyncJobService.class, AsyncJobServiceImpl.class);
-	
+		
+		
 
 		// cloud trace
 		bind(TraceService.class, TraceService.class);
@@ -714,13 +747,12 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(VersionService.class, VersionService.class);
 		bind(com.huawei.openstack4j.openstack.maas.internal.TaskService.class,
 				com.huawei.openstack4j.openstack.maas.internal.TaskService.class);
-		
+
 		//cdn
 		bind(CdnServices.class,CdnServices.class);
 		bind(com.huawei.openstack4j.openstack.cdn.v1.internal.DomainService.class,com.huawei.openstack4j.openstack.cdn.v1.internal.DomainService.class);
 		bind(StatisticService.class,StatisticService.class);
 		bind(LogService.class,LogService.class);
-
 	}
 
 	/**

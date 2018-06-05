@@ -88,7 +88,10 @@ public abstract class AbstractTest {
         MAAS(10008),
         NOTIFICATION(10010),
         MESSAGE_QUEUE(10011),
-        CDN(10012)
+        ECS1_1(10012),
+        EVS2_1(10013),
+        VPC2(10014),
+        CDN(10015)
         ;
     	//@on
 

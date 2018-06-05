@@ -74,7 +74,8 @@ public class AbstractTest {
 				"https://dms.eu-de.otc.t-systems.com/v1.0/%(project_id)s");
 		endpointResolver.addOverrideEndpoint(ServiceType.MAAS,
 				"https://maas.eu-de.otc.t-systems.com/v1/%(project_id)s/objectstorage");
-		endpointResolver.addOverrideEndpoint(ServiceType.DATABASE, "https://rds.eu-de.otc.t-systems.com");
+		endpointResolver.addOverrideEndpoint(ServiceType.DATABASE, 
+				"https://rds.eu-de.otc.t-systems.com");
 
 		// TODO remove authentication before push to github
 		String user = "replace-with-your-username";

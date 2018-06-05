@@ -21,13 +21,12 @@ import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Sets;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.annotations.VisibleForTesting;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Sets;
 import com.huawei.openstack4j.api.Apis;
 import com.huawei.openstack4j.api.EndpointTokenProvider;
 import com.huawei.openstack4j.api.OSClient;
@@ -42,11 +41,13 @@ import com.huawei.openstack4j.api.gbp.GbpService;
 import com.huawei.openstack4j.api.heat.HeatService;
 import com.huawei.openstack4j.api.identity.EndpointURLResolver;
 import com.huawei.openstack4j.api.image.ImageService;
+import com.huawei.openstack4j.api.loadbalance.ELBService;
 import com.huawei.openstack4j.api.magnum.MagnumService;
 import com.huawei.openstack4j.api.manila.ShareService;
 import com.huawei.openstack4j.api.map.reduce.MapReduceService;
 import com.huawei.openstack4j.api.murano.v1.AppCatalogService;
 import com.huawei.openstack4j.api.networking.NetworkingService;
+import com.huawei.openstack4j.api.scaling.AutoScalingService;
 import com.huawei.openstack4j.api.senlin.SenlinService;
 import com.huawei.openstack4j.api.storage.BlockStorageService;
 import com.huawei.openstack4j.api.storage.ObjectStorageService;
@@ -60,9 +61,22 @@ import com.huawei.openstack4j.model.identity.AuthVersion;
 import com.huawei.openstack4j.model.identity.URLResolverParams;
 import com.huawei.openstack4j.model.identity.v2.Access;
 import com.huawei.openstack4j.model.identity.v3.Token;
+
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
+
+import com.huawei.openstack4j.openstack.antiddos.internal.AntiDDoSServices;
+import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
+import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.CloudTraceV1Service;
+import com.huawei.openstack4j.openstack.cloud.trace.v2.internal.CloudTraceV2Service;
+import com.huawei.openstack4j.openstack.database.internal.DatabaseServices;
+
+import com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService;
 import com.huawei.openstack4j.openstack.identity.internal.DefaultEndpointURLResolver;
+import com.huawei.openstack4j.openstack.maas.internal.MaaSService;
+import com.huawei.openstack4j.openstack.message.notification.internal.NotificationService;
+import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
+import com.huawei.openstack4j.openstack.vpc.v2.internal.VirtualPrivateCloudService;
 
 /**
  * A client which has been identified. Any calls spawned from this session will
@@ -105,7 +119,10 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 		this.config = config;
 		return (R) this;
 	}
-
+	
+	public boolean supportsReAuthentication() {
+		return true;
+	}
 	/**
 	 * {@inheritDoc}
 	 */
@@ -149,7 +166,69 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 	public NetworkingService networking() {
 		return Apis.getNetworkingServices();
 	}
+	
+	/*
+	 * {@inheritDoc}
+	 */
+	public AutoScalingService autoScaling() {
+		return Apis.get(AutoScalingService.class);
+	}
+	/*
+	 * {@inheritDoc}
+	 */
+	public ELBService loadBalancer() {
+		return Apis.get(ELBService.class);
+	}
 
+	/*
+	 * {@inheritDoc}
+	 */	
+	public CloudTraceV1Service cloudTraceV1() {
+		return Apis.get(CloudTraceV1Service.class);
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	public CloudTraceV2Service cloudTraceV2() {
+		return Apis.get(CloudTraceV2Service.class);
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+
+	public AntiDDoSServices antiDDoS() {
+		return Apis.get(AntiDDoSServices.class);
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	public NotificationService notification() {
+		return Apis.get(NotificationService.class);
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	public MessageQueueService messageQueue() {
+		return Apis.get(MessageQueueService.class);
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	public MaaSService maas() {
+		return Apis.get(MaaSService.class);
+	}
+
+	/*
+	 * {@inheritDoc}
+	 */
+	public DatabaseServices database() {
+		return Apis.get(DatabaseServices.class);
+	}
 	/**
 	 * {@inheritDoc}
 	 */
@@ -409,10 +488,53 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 	 *
 	 * @return
 	 */
-	public ElasticComputeService ecs() {
-		return Apis.getElasticComputeService();
+	 public ElasticComputeService ecs() {
+	 	return Apis.getElasticComputeService();
+	 }
+	 
+	 /**
+	 *
+	 * @return
+	 */
+	 public com.huawei.openstack4j.openstack.ecs.v1_1.internal.ElasticComputeService ecsV1_1() {
+	 	return Apis.get(com.huawei.openstack4j.openstack.ecs.v1_1.internal.ElasticComputeService.class);
+	 }
+	 
+	 /**
+	 *
+	 * @return
+	 */
+	 public ElasticVolumeService evs() {
+		return Apis.get(ElasticVolumeService.class);
 	}
-
+	 
+	 /**
+	 *
+	 * @return
+	 */
+	 public com.huawei.openstack4j.openstack.evs.v2_1.internal.ElasticVolumeService evsV2_1() {
+		return Apis.get(com.huawei.openstack4j.openstack.evs.v2_1.internal.ElasticVolumeService.class);
+	}
+	 /**
+	  * 
+	  * @return
+	  */
+	 public VirtualPrivateCloudService vpcV2(){
+		 return Apis.get(VirtualPrivateCloudService.class);
+	 };
+	 
+	 /**
+	  * Returns the VirtualPrivateCloud Service API
+	  * @return the VirtualPrivateCloudService
+	  */
+	 public com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService vpc(){
+		 return Apis.get(com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService.class);
+	 };
+	 
+	public CdnServices cdn() {
+		return Apis.get(CdnServices.class);
+	}
+	 
 	public static class OSClientSessionV2 extends OSClientSession<OSClientSessionV2, OSClientV2> implements OSClientV2 {
 
 		Access access;

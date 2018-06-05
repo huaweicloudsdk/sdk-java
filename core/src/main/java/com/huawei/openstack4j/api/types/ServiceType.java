@@ -46,6 +46,12 @@ public enum ServiceType {
 	LOAD_BALANCER("ELB", "load-balancer"),
 	CLOUD_EYE("CES", "cloud-eye"),
 	
+	VPC("VPC","vpc"),
+	VPC2("VPC","vpcv2.0"),
+	EVS("EVS","evs"),
+	EVS2_1("EVS","evsv2.1"),
+	ECS("ECS","ecs"),
+	ECS1_1("ECS","ecsv1.1"),
 	KEY_MANAGEMENT("KMS", "key-management"),
 	CLOUD_TRACE("CTS", "cloud-trace"),
 	ANTI_DDOS("antiddos", "anti-ddos"),
@@ -53,7 +59,6 @@ public enum ServiceType {
 	MessageQueue("DMS", "distributed-message"),
 	MAAS("MaaS", "MaaS"),
 	CDN("cdn","cdn"),
-	
 	UNKNOWN("NA", "NA")
 	;
 	//@on
