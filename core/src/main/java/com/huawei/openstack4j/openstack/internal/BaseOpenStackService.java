@@ -15,7 +15,8 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.internal;
 
-import static com.huawei.openstack4j.core.transport.ClientConstants.*;
+import static com.huawei.openstack4j.core.transport.ClientConstants.HEADER_USER_AGENT;
+import static com.huawei.openstack4j.core.transport.ClientConstants.USER_AGENT;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,7 +26,7 @@ import java.util.SortedSet;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
-
+import com.google.common.base.Strings;
 import com.huawei.openstack4j.api.client.CloudProvider;
 import com.huawei.openstack4j.api.exceptions.OS4JException;
 import com.huawei.openstack4j.api.types.ServiceType;
@@ -137,6 +138,11 @@ public class BaseOpenStackService {
 			Token token = v3.getToken();
 			if (null != token && token.getProject() != null && token.getProject().getId() != null) {
 				path = path.replace("%(project_id)s", token.getProject().getId());
+			}
+		}else if (ses instanceof OSClientSessionAKSK) {
+			OSClientSessionAKSK AKSK = (OSClientSessionAKSK) ses;
+			if (!Strings.isNullOrEmpty(AKSK.getProjectId())) {
+				path = path.replace("%(project_id)s", AKSK.getProjectId());
 			}
 		}
 

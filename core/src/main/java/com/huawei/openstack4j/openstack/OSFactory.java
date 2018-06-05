@@ -184,4 +184,8 @@ public abstract class OSFactory<T extends OSFactory<T>> {
     public static IOSClientBuilder.V3 builderV3() {
         return new OSClientBuilder.ClientV3();
     }
+    
+    public static IOSClientBuilder.AKSK builderAKSK() {
+        return new OSClientBuilder.ClientAKSK();
+    }
 }

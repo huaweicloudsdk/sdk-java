@@ -1,0 +1,20 @@
+{
+  "DNS": {
+    "public": "https://dns.%(region)s.%(domain)s/"
+  },
+  "COMPUTE": {
+    "public": "https://ecs.%(region)s.%(domain)s/v2/%(projectId)s"
+  },
+  "NETWORK": {
+    "public": "https://vpc.%(region)s.%(domain)s"
+  },
+  "IMAGE": {
+    "public": "https://ims.%(region)s.%(domain)s"
+  },
+  "BLOCK_STORAGE": {
+    "public": "https://evs.%(region)s.%(domain)s/v2/%(projectId)s"
+  },
+  "OBJECT_STORAGE": {
+    "public": "https://obs.%(region)s.%(domain)s"
+  }
+}

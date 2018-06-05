@@ -20,9 +20,9 @@ import java.net.URISyntaxException;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.concurrent.ConcurrentHashMap;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.SortedSetMultimap;
-
 import com.huawei.openstack4j.api.exceptions.RegionEndpointNotFoundException;
 import com.huawei.openstack4j.api.identity.EndpointURLResolver;
 import com.huawei.openstack4j.api.types.Facing;
@@ -258,5 +258,11 @@ public class DefaultEndpointURLResolver implements EndpointURLResolver {
             return true;
         }
     }
+
+	@Override
+	public String resolve(URLResolverParams params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

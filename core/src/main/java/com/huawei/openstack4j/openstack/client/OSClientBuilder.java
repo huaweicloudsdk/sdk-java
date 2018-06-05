@@ -15,8 +15,9 @@
  *******************************************************************************/
 package com.huawei.openstack4j.openstack.client;
 
-import static com.google.common.base.Preconditions.*;
+import static com.google.common.base.Preconditions.checkArgument;
 
+import com.huawei.openstack4j.api.OSClient.OSClientAKSK;
 import com.huawei.openstack4j.api.OSClient.OSClientV2;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
 import com.huawei.openstack4j.api.client.CloudProvider;
@@ -32,6 +33,7 @@ import com.huawei.openstack4j.openstack.identity.v2.domain.TokenAuth;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneAuth;
 import com.huawei.openstack4j.openstack.identity.v3.domain.KeystoneAuth.AuthScope;
 import com.huawei.openstack4j.openstack.internal.OSAuthenticator;
+import com.huawei.openstack4j.openstack.internal.OSClientSessionAKSK;
 
 /**
  * Builder definitions for creating a Client
@@ -206,4 +208,40 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
         }
 
     }
+    
+    public static class ClientAKSK extends OSClientBuilder<OSClientAKSK, IOSClientBuilder.AKSK>
+	implements IOSClientBuilder.AKSK {
+
+		private String accessKey;
+		private String secretKey;
+		private String serviceDomainName;
+		private String projectId;
+		private String region;
+		
+		/*
+		 * {@inheritDoc}
+		 */
+		@Override
+		public OSClientAKSK authenticate() throws AuthenticationException {
+			OSClientAKSK session = new OSClientSessionAKSK().credentials(accessKey, secretKey, region, projectId, serviceDomainName)
+					.perspective(perspective).useConfig(config);
+			return session;
+		}
+		
+		/*
+		 * {@inheritDoc}
+		 */
+		@Override
+		public com.huawei.openstack4j.api.client.IOSClientBuilder.AKSK credentials(String accessKey, String secretKey,
+				String region, String projectId, String serviceDomainName) {
+			this.accessKey = accessKey;
+			this.secretKey = secretKey;
+			this.serviceDomainName = serviceDomainName;
+			this.projectId = projectId;
+			this.region = region;
+			return this;
+		}
+		
+		//TODO add more quick build method later?
+		}
 }

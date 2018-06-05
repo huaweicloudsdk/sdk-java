@@ -30,7 +30,6 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
 import com.google.common.collect.SortedSetMultimap;
-
 import com.huawei.openstack4j.api.exceptions.RegionEndpointNotFoundException;
 import com.huawei.openstack4j.api.identity.EndpointURLResolver;
 import com.huawei.openstack4j.api.types.Facing;
@@ -82,10 +81,16 @@ public class OverridableEndpointURLResolver implements EndpointURLResolver {
 
 		if (url != null)
 			return url;
-
-		url = resolveV2(p);
-
+		
+		String endpoint = overrides.get(p.type);
+		if (endpoint != null) {
+			url = endpoint;
+		} else {
+			url = resolveV2(p);
+		}
+		
 		if (url != null) {
+			CACHE.put(key, url);
 			return url;
 		} else if (p.region != null)
 			throw RegionEndpointNotFoundException.create(p.region, p.type.getServiceName());
@@ -285,5 +290,17 @@ public class OverridableEndpointURLResolver implements EndpointURLResolver {
 			return true;
 		}
 	}
+
+	@Override
+	public String resolve(URLResolverParams p) {		
+		Key key = Key.of(p.projectId, p.type, p.perspective, p.region);
+		String url = CACHE.get(key);
+		if(null != url)	return url;			
+		 url = overrides.get(p.type).replace("%(project_id)s", p.projectId);		 
+		 CACHE.put(key, url);
+		return url;
+	}
+
+
 
 }

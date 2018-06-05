@@ -36,7 +36,11 @@ public class URLResolverParams {
     public Facing perspective;
     private ServiceVersionResolver resolver;
     public Access access;
-
+    
+    // V4
+    public String domain;
+    public String projectId;
+    
     private URLResolverParams(Token token, ServiceType type) {
         this.token = token;
         this.type = (type == null) ? ServiceType.IDENTITY : type;
@@ -48,6 +52,14 @@ public class URLResolverParams {
 
     public static URLResolverParams create(Access access, ServiceType type) {
         return new URLResolverParams(access, type);
+    }
+   
+    private URLResolverParams(ServiceType type) {
+        this.type = (type == null) ? ServiceType.IDENTITY : type;
+    }
+    
+    public static URLResolverParams create(ServiceType type) {
+        return new URLResolverParams(type);
     }
 
     private URLResolverParams(Access access, ServiceType type) {
@@ -73,9 +85,19 @@ public class URLResolverParams {
     public ServiceVersionResolver getResolver() {
         return (resolver != null) ? resolver : LatestServiceVersionResolver.INSTANCE;
     }
+    
+    public URLResolverParams projectId(String projectId) {
+        this.projectId = projectId;
+        return this;
+    }
 
     public ServiceVersionResolver getV2Resolver() {
         return (resolver != null) ? resolver : StableServiceVersionResolver.INSTANCE;
+    }
+    
+    public URLResolverParams domain(String domain) {
+        this.domain = domain;
+        return this;
     }
 
 }

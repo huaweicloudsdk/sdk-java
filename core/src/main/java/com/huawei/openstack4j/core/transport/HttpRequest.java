@@ -22,11 +22,14 @@ import java.util.Map;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Maps;
-
 import com.huawei.openstack4j.api.EndpointTokenProvider;
 import com.huawei.openstack4j.api.types.ServiceType;
 import com.huawei.openstack4j.model.ModelEntity;
 import com.huawei.openstack4j.model.common.Payload;
+import com.huawei.openstack4j.openstack.identity.signer.AKSK;
+import com.huawei.openstack4j.openstack.identity.signer.AKSK.Credential;
+import com.huawei.openstack4j.openstack.internal.OSClientSession;
+import com.huawei.openstack4j.openstack.internal.OSClientSessionAKSK;
 
 /**
  * A Request Delegate which aids in building the request that is compatible with the OpenStack Rest API. The request is used to encoding as well as keeping reference to 
@@ -37,7 +40,7 @@ import com.huawei.openstack4j.model.common.Payload;
  */
 public class HttpRequest<R> {
 
-
+	String region;
 	String endpoint;
 	String path;
 	Class<R> returnType;
@@ -47,6 +50,7 @@ public class HttpRequest<R> {
 	String json;
 	private Config config;
 	private Map<String, List<Object>> queryParams;
+	private ServiceType service;
 	private Map<String, Object> headers = new HashMap<String, Object>();
 	private Function<String, String> endpointFunc;
 	public HttpRequest() { }
@@ -184,7 +188,15 @@ public class HttpRequest<R> {
 	public Config getConfig() {
 	    return config != null ? config : Config.DEFAULT;
 	}
-
+	
+	public ServiceType getService() {
+		return service;
+	}
+	
+	public String getRegion() {
+		return region;
+	}
+	
 	public static final class RequestBuilder<R> {
 
 		HttpRequest<R> request;
@@ -327,6 +339,7 @@ public class HttpRequest<R> {
 		 * @return the request builder
 		 */
 		public RequestBuilder<R> serviceType(ServiceType service) {
+			request.service = service;
 			this.service = service;
 			return this;
 		}
@@ -420,7 +433,20 @@ public class HttpRequest<R> {
 				request.endpoint = provider.getEndpoint(service);
 				if (provider.getTokenId() != null)
 				    request.getHeaders().put(ClientConstants.HEADER_X_AUTH_TOKEN, provider.getTokenId());
+			
+				// V4(AK/SK) authentication
+				OSClientSession<?, ?> session = OSClientSession.getCurrent();
+				if (session instanceof OSClientSessionAKSK) {
+					OSClientSessionAKSK aksk = ((OSClientSessionAKSK) session);
+					request.region = aksk.getRegion();
+					Credential credential = Credential.builder().ak(aksk.getAccessKey()).sk(aksk.getSecretKey()).build();
+					HashMap<String, String> headers = AKSK.sign(request, credential);
+					request.getHeaders().putAll(headers);
+				}
+				
 			}
+			
+			
 			return request;
 		}
 	}

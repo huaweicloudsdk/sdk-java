@@ -23,5 +23,6 @@ package com.huawei.openstack4j.api.client;
 public enum CloudProvider {
     UNKNOWN,
     RACKSPACE,
-    HPCLOUD
+    HPCLOUD,
+    HUAWEI
 }

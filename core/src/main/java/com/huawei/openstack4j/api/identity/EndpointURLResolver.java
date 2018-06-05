@@ -46,5 +46,15 @@ public interface EndpointURLResolver {
      * @return the URL of the Endpoint
      */
     String findURLV3(URLResolverParams params);
+    
+    /**
+     * Resolves the given ServiceType and Facing perspective down to a single URL
+     * 
+     * <p>don't know why the preview version designs findURLV2 & findURLV3, they should be different resolver implementation </p>
+     * 
+     * @param params URLResolverParams containing mandatory and optional params
+     * @return the URL of the Endpoint
+     */
+    String resolve(URLResolverParams params);
 
 }

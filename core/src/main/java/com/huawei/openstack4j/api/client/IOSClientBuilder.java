@@ -15,6 +15,7 @@
  *******************************************************************************/
 package com.huawei.openstack4j.api.client;
 
+import com.huawei.openstack4j.api.OSClient.OSClientAKSK;
 import com.huawei.openstack4j.api.OSClient.OSClientV2;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
 import com.huawei.openstack4j.api.exceptions.AuthenticationException;
@@ -220,6 +221,25 @@ public interface IOSClientBuilder<R, T extends IOSClientBuilder<R, T>> {
          * @return self for method chaining
          */
         V3 scopeToDomain(Identifier domain);
+
+    }
+    
+    /**
+     * OpenStack4j Client builder which authenticates against version AKSK
+     */
+    public interface AKSK extends IOSClientBuilder<OSClientAKSK, AKSK> {
+
+    	/**
+    	 * build method for {@link OSClientV4#credentials(String, String, String, String, String)}
+    	 * 
+    	 * @param accessKey
+    	 * @param secretKey
+    	 * @param region
+    	 * @param projectId
+    	 * @param serviceDomainName
+    	 * @return
+    	 */
+    	AKSK credentials(String accessKey, String secretKey, String region, String projectId, String serviceDomainName);
 
     }
 
