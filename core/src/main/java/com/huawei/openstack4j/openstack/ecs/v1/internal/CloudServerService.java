@@ -3,6 +3,7 @@ package com.huawei.openstack4j.openstack.ecs.v1.internal;
 import static com.google.common.base.Preconditions.*;
 
 import java.util.List;
+import java.util.Map;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -15,9 +16,7 @@ import com.huawei.openstack4j.openstack.common.AsyncJobEntity;
 import com.huawei.openstack4j.openstack.common.IdResourceEntity;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.Job;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
-import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate.ServerCreates;
 import com.huawei.openstack4j.openstack.ecs.v1_1.domain.ResizeServer;
 
 public class CloudServerService extends BaseElasticComputeServices {
@@ -118,6 +117,19 @@ public class CloudServerService extends BaseElasticComputeServices {
 		return get(CloudServers.class, uri("/cloudservers/detail")).execute().getList();
 	}
 
+	/**
+	 * Query cloud server details list by filteringParams
+	 */
+	public List<CloudServer> list(Map<String, String> filteringParams) {
+		Invocation<CloudServers> serverInvocation = get(CloudServers.class, "/cloudservers/detail");
+		if (filteringParams != null) {
+			for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+				serverInvocation = serverInvocation.param(entry.getKey(), entry.getValue());
+			}
+		}
+		return serverInvocation.execute().getList();
+	}
+	
 	/**
 	 * Query cloud server details
 	 * @param serverId
