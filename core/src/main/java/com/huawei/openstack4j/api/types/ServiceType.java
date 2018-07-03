@@ -45,7 +45,7 @@ public enum ServiceType {
 	AUTO_SCALING("AS", "auto-scaling"),
 	LOAD_BALANCER("ELB", "load-balancer"),
 	CLOUD_EYE("CES", "cloud-eye"),
-	
+	TAG_MANAGEMENT("TMS", "tag-management"),
 	VPC("VPC","vpc"),
 	VPC2("VPC","vpcv2.0"),
 	EVS("EVS","evs"),

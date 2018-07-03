@@ -53,9 +53,11 @@ import com.huawei.openstack4j.openstack.cloud.trace.v2.internal.CloudTraceV2Serv
 import com.huawei.openstack4j.openstack.database.internal.DatabaseServices;
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
 import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
+import com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService;
 import com.huawei.openstack4j.openstack.maas.internal.MaaSService;
 import com.huawei.openstack4j.openstack.message.notification.internal.NotificationService;
 import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueService;
+import com.huawei.openstack4j.openstack.tms.v1.internal.TagManagementService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 import com.huawei.openstack4j.openstack.vpc.v2.internal.VirtualPrivateCloudService;
 
@@ -391,6 +393,52 @@ public interface OSClient<T extends OSClient<T>> {
 	CloudEyeService cloudEye();
 	
 
+	 /**
+	  * Returns the ElasticCompute Service API
+	  * @return the ElasticCompute service
+	  */
+	 ElasticComputeService ecs();
+     
+	 /**
+	  * Returns the TagManagementService API
+	  * @return
+	  */
+//	 TagManagementService tms();
+	
+	/**
+	 * OpenStack4j Client which authenticates against version AKSK
+	 */
+	public interface OSClientAKSK extends OSClient<OSClient.OSClientAKSK> {
+
+		/**
+		 * create a AKSK OSClient with required credentials 
+		 * 
+		 * @param accessKey					Access key
+		 * @param secretKey					Secret key
+		 * @param region					region 
+		 * @param projectId					user project id
+		 * @param serviceDomainName			cloud service domain, example: myhwclouds.com
+		 * @return
+		 */
+		public OSClientAKSK credentials(String accessKey, String secretKey, String region, String projectId, String serviceDomainName);
+
+		/**
+		 * @param config
+		 */
+		public OSClientAKSK useConfig(Config config);
+		
+		/**
+		 * Returns the Identity Service API V3
+		 *
+		 * @return the identity service version 3
+		 */
+		com.huawei.openstack4j.api.identity.v3.IdentityService identity();
+		
+		
+	}
+
+	
+	
 	/**
 	 * get the Auto Scaling service 
 	 * @return the OTC AutoScaling Service
@@ -445,13 +493,9 @@ public interface OSClient<T extends OSClient<T>> {
 	 * @return the OTC {@link DatabaseServices} instance
 	 */
 	DatabaseServices database();
-	
-	/**
-	 * get the CDN service 
-	 * @return the OTC {@link CdnServices} instance
-	 */
-	CdnServices cdn();
 
+
+	 
 	 
 	 /**
 	  * Returns the ElasticCompute Service API
@@ -463,7 +507,7 @@ public interface OSClient<T extends OSClient<T>> {
 	  * Returns the ElasticVolume Service API
 	  * @return the ElasticVolume service
 	  */
-//	 ElasticVolumeService evs();
+	 ElasticVolumeService evs();
 	 
 	 /**
 	  * Returns the ElasticVolume Service API
@@ -482,39 +526,12 @@ public interface OSClient<T extends OSClient<T>> {
 	  * Returns the VirtualPrivateCloud Service API
 	  * @return the VirtualPrivateCloudService
 	  */
-//	 com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService vpc();
+	 com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService vpc();
+	 
 	 
 	 /**
-	  * Returns the ElasticCompute Service API
-	  * @return the ElasticCompute service
+	  * get the CDN service 
+	  * @return the OTC {@link CdnServices} instance
 	  */
-	 ElasticComputeService ecs();
-     
-	 
-	
-	/**
-	 * OpenStack4j Client which authenticates against version AKSK
-	 */
-	public interface OSClientAKSK extends OSClient<OSClient.OSClientAKSK> {
-
-		/**
-		 * create a AKSK OSClient with required credentials 
-		 * 
-		 * @param accessKey					Access key
-		 * @param secretKey					Secret key
-		 * @param region					region 
-		 * @param projectId					user project id
-		 * @param serviceDomainName			cloud service domain, example: myhwclouds.com
-		 * @return
-		 */
-		public OSClientAKSK credentials(String accessKey, String secretKey, String region, String projectId, String serviceDomainName);
-
-		/**
-		 * @param config
-		 */
-		public OSClientAKSK useConfig(Config config);
-		
-		
-	}
-
+	 CdnServices cdn();
 }

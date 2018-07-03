@@ -83,6 +83,10 @@ public final class ClientConstants {
     public static final String PATH_METRICS = "/metrics";
     public static final String PATH_FAVORITE_METRICS = "/favorite-metrics";
 
+    //tagmanagement
+    public static final String PATH_PREDEFINE_TAG = "/predefine_tags";
+    public static final String PATH_PREDEFINE_TAG_ACTION = "/action";
+    
     //CloudEye/Alarm
     public static final String PATH_ALARMS = "/alarms";
     public static final String PATH_ALARMS_ACTION = "/action";

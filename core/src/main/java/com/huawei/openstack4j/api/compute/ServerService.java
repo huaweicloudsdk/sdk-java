@@ -59,6 +59,15 @@ public interface ServerService {
      * @return list of all servers
      */
     List<? extends Server> list(boolean detail);
+    
+    /**
+     * List all servers (detailed / brief) that the current tenant has access to
+     *
+     * @param detail if true all attributes will be populated, false (brief) will be ID, Name and Links
+     * @param filteringParams map (name, value) of filtering parameters
+     * @return list of all servers
+     */
+    List<? extends Server> list(boolean detail , Map<String, String> filteringParams);
 
     /**
      * Returns list of servers filtered by parameters.

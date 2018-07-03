@@ -76,6 +76,27 @@ public class HttpExecutorServiceImpl implements HttpExecutorService {
         }
     }
 
+//    private <R> HttpResponse invokeRequest(HttpCommand<R> command) throws Exception {
+//        Response response = command.execute();
+//        if(!command.getRequest().getHeaders().containsKey(ClientConstants.HEADER_OS4J_AUTH)){
+////        	response.getStatusInfo().getReasonPhrase();
+//        	if(response.getStatus() == 401){
+//        		if (command.getRetries() < 5){
+//                    OSAuthenticator.reAuthenticate();
+//                    if(OSClientSession.getCurrent()==null) return HttpResponseImpl.wrap(response);
+//                    command.getRequest().getHeaders().put(ClientConstants.HEADER_X_AUTH_TOKEN, OSClientSession.getCurrent().getTokenId());
+//                    return invokeRequest(command.incrementRetriesAndReturn());
+//                } else {
+//                	command.ReplyRetries();
+//                } 
+//        	}
+//        	else {
+//            	command.ReplyRetries();
+//            }
+//        }
+//        return HttpResponseImpl.wrap(response);
+//    }
+
     private <R> HttpResponse invokeRequest(HttpCommand<R> command) throws Exception {
         Response response = command.execute();
         if (command.getRetries() == 0 && response.getStatus() == 401 && !command.getRequest().getHeaders().containsKey(ClientConstants.HEADER_OS4J_AUTH))
@@ -86,7 +107,7 @@ public class HttpExecutorServiceImpl implements HttpExecutorService {
         }
         return HttpResponseImpl.wrap(response);
     }
-
+    
     @Override
     public String getExecutorDisplayName() {
         return NAME;

@@ -61,20 +61,18 @@ import com.huawei.openstack4j.model.identity.AuthVersion;
 import com.huawei.openstack4j.model.identity.URLResolverParams;
 import com.huawei.openstack4j.model.identity.v2.Access;
 import com.huawei.openstack4j.model.identity.v3.Token;
-
 import com.huawei.openstack4j.openstack.ecs.v1.internal.ElasticComputeService;
-
 import com.huawei.openstack4j.openstack.antiddos.internal.AntiDDoSServices;
 import com.huawei.openstack4j.openstack.cdn.v1.internal.CdnServices;
 import com.huawei.openstack4j.openstack.cloud.trace.v1.internal.CloudTraceV1Service;
 import com.huawei.openstack4j.openstack.cloud.trace.v2.internal.CloudTraceV2Service;
 import com.huawei.openstack4j.openstack.database.internal.DatabaseServices;
-
 import com.huawei.openstack4j.openstack.evs.v2.internal.ElasticVolumeService;
 import com.huawei.openstack4j.openstack.identity.internal.DefaultEndpointURLResolver;
 import com.huawei.openstack4j.openstack.maas.internal.MaaSService;
 import com.huawei.openstack4j.openstack.message.notification.internal.NotificationService;
 import com.huawei.openstack4j.openstack.message.queue.internal.MessageQueueService;
+import com.huawei.openstack4j.openstack.tms.v1.internal.TagManagementService;
 import com.huawei.openstack4j.openstack.trove.internal.TroveService;
 import com.huawei.openstack4j.openstack.vpc.v2.internal.VirtualPrivateCloudService;
 
@@ -501,6 +499,14 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 	 }
 	 
 	 /**
+	  * 
+	  * @return
+	  */
+	 public TagManagementService tms(){
+		 return Apis.get(TagManagementService.class);
+	 }
+	 
+	 /**
 	 *
 	 * @return
 	 */
@@ -521,7 +527,7 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 	  */
 	 public VirtualPrivateCloudService vpcV2(){
 		 return Apis.get(VirtualPrivateCloudService.class);
-	 };
+	 }
 	 
 	 /**
 	  * Returns the VirtualPrivateCloud Service API
@@ -529,11 +535,11 @@ public abstract class OSClientSession<R, T extends OSClient<T>> implements Endpo
 	  */
 	 public com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService vpc(){
 		 return Apis.get(com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService.class);
-	 };
+	 }
 	 
-	public CdnServices cdn() {
+	 public CdnServices cdn() {
 		return Apis.get(CdnServices.class);
-	}
+	 }
 	 
 	public static class OSClientSessionV2 extends OSClientSession<OSClientSessionV2, OSClientV2> implements OSClientV2 {
 

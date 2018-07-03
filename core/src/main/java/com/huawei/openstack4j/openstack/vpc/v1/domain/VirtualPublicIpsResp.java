@@ -16,38 +16,40 @@ import com.huawei.openstack4j.openstack.vpc.v1.contants.PublicIpStatus;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonRootName("publicip")
-public class VirtualPublicIp implements ModelEntity{
+public class VirtualPublicIpsResp implements ModelEntity{
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2488535914184128625L;
+	private static final long serialVersionUID = -6776710501544914385L;
+	/**
+	 * 
+	 * 
+	 * {
+			"publicip": {
+				"id": "f588ccfa-8750-4d7c-bf5d-2ede24414706",
+				"status": "PENDING_CREATE",
+				"type": "5_bgp",
+				"public_ip_address": "161.17.101.7",
+				"tenant_id": "8b7e35ad379141fc9df3e178bd64f55c",
+				"create_time": "2015-07-16 04:10:52",
+				"bandwidth_size": 0
+			}
+		}
+	 */
 	@JsonProperty("id")
 	private String id;
 	@JsonProperty("status")
 	private PublicIpStatus status;
-	@JsonProperty("profile")
-	private VirtualProfile profile;
 	@JsonProperty("type")
 	private String type;
 	@JsonProperty("public_ip_address")
 	private String publicIpAddress;
-	@JsonProperty("private_ip_address")
-	private String privateIpAddress;
-	@JsonProperty("port_id")
-	private String portId;
 	@JsonProperty("tenant_id")
 	private String tenantId;
 	@JsonProperty("create_time")
 	private String createTime;
-	@JsonProperty("bandwidth_id")
-	private String bandwidthId;
 	@JsonProperty("bandwidth_size")
-	private String bandwidthSize;
-	@JsonProperty("bandwidth_share_type")
-	private String bandwidthShareType;
-	@JsonProperty("bandwidth_name")
-	private String bandwidthName;
-	@JsonProperty("enterprise_project_id")
-	private String enterpriseProjectId;
+	private Integer bandwidthSize;
 	
 }

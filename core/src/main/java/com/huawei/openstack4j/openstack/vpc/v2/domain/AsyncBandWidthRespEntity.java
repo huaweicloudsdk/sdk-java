@@ -3,7 +3,7 @@ package com.huawei.openstack4j.openstack.vpc.v2.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.huawei.openstack4j.model.ModelEntity;
-import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualBandWidthResp;
+import com.huawei.openstack4j.openstack.vpc.v1.domain.VirtualBandWidths;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +29,6 @@ public class AsyncBandWidthRespEntity implements ModelEntity  {
 	@JsonProperty("order_id")
 	String orderId;
 	@JsonProperty("bandwidth")
-	VirtualBandWidthResp virtualBandWidthResp;
+	VirtualBandWidths virtualBandWidthResp;
 	
 }

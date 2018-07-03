@@ -434,7 +434,7 @@ public class HttpRequest<R> {
 				if (provider.getTokenId() != null)
 				    request.getHeaders().put(ClientConstants.HEADER_X_AUTH_TOKEN, provider.getTokenId());
 			
-				// V4(AK/SK) authentication
+				// (AK/SK) authentication
 				OSClientSession<?, ?> session = OSClientSession.getCurrent();
 				if (session instanceof OSClientSessionAKSK) {
 					OSClientSessionAKSK aksk = ((OSClientSessionAKSK) session);
@@ -442,6 +442,7 @@ public class HttpRequest<R> {
 					Credential credential = Credential.builder().ak(aksk.getAccessKey()).sk(aksk.getSecretKey()).build();
 					HashMap<String, String> headers = AKSK.sign(request, credential);
 					request.getHeaders().putAll(headers);
+					request.getHeaders().put(ClientConstants.HEADER_X_PROJECT_ID, aksk.getProjectId());
 				}
 				
 			}

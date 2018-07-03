@@ -26,15 +26,14 @@ import lombok.ToString;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.huawei.openstack4j.model.ModelEntity;
-import com.huawei.openstack4j.openstack.vpc.v2.contants.VirtualChargingMode;
-import com.huawei.openstack4j.openstack.vpc.v2.contants.ShareType;
+import com.huawei.openstack4j.openstack.common.ListResult;
 @Getter
 @ToString
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonRootName("bandwidth")
-public class VirtualBandWidthResp implements ModelEntity {
+public class VirtualBandWidths implements ModelEntity {
 
 	
 	/**
@@ -116,6 +115,38 @@ public class VirtualBandWidthResp implements ModelEntity {
 	 * 带宽对应的弹性公网IP信息
 	 */
 	@JsonProperty("publicip_info")
-	private List<VirtualPublicIpResp> virtualPublicIpResp;
+	private List<VirtualPublicIpInfo> virtualPublicIpResp;
 	
+	/**
+	 * 账单信息
+	 */
+	@JsonProperty("billing_info")
+	private String billingInfo;
+	
+	/**
+	 * 企业项目ID
+	 */
+	@JsonProperty("enterprise_project_id")
+	private String enterpriseProjectId;
+	
+	
+	
+	
+	
+	public static class VirtualBandWidthResps extends ListResult<VirtualBandWidths> {
+	
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 4969884416569652933L;
+			
+			@JsonProperty("bandwidths")
+			private List<VirtualBandWidths> bandwidths;
+	
+			@Override
+			protected List<VirtualBandWidths> value() {
+				return bandwidths;
+			}
+		}
 }

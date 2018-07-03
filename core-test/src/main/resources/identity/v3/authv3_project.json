@@ -905,6 +905,62 @@
         "endpoints": [
           {
             "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10017/v2.0/project-id",
+            "region": "RegionOne",
+            "interface": "public",
+            "id": "2241f1ee096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10017/v2.0/project-id",
+            "region": "RegionOne",
+            "interface": "admin",
+            "id": "2241f446096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10017/v2.0/project-id",
+            "region": "RegionOne",
+            "interface": "internal",
+            "id": "2241f55e096a11e793ae92361f002671"
+          }
+        ],
+        "type": "vpc",
+        "id": "2241f6c6096a11e793ae92361f002671",
+        "name": "VPC"
+      },
+      {
+        "endpoints": [
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10016/v2.0/project-id",
+            "region": "RegionOne",
+            "interface": "public",
+            "id": "2241f1ee096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10016/v2.0/project-id",
+            "region": "RegionOne",
+            "interface": "admin",
+            "id": "2241f446096a11e793ae92361f002671"
+          },
+          {
+            "region_id": "RegionOne",
+            "url": "http://127.0.0.1:10016/v2.0/project-id",
+            "region": "RegionOne",
+            "interface": "internal",
+            "id": "2241f55e096a11e793ae92361f002671"
+          }
+        ],
+        "type": "tag-management",
+        "id": "2241f6c6096a11e793ae92361f002671",
+        "name": "TMS"
+      },
+      {
+        "endpoints": [
+          {
+            "region_id": "RegionOne",
             "url": "http://127.0.0.1:10012/v1.1/project-id",
             "region": "RegionOne",
             "interface": "public",

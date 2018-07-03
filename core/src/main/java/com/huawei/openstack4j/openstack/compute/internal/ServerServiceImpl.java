@@ -101,6 +101,14 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 	public List<? extends Server> list(boolean detail) {
 		return list(detail, Boolean.FALSE);
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<? extends Server> list(boolean detail , Map<String, String> filteringParams) {
+		return list(detail, Boolean.FALSE , filteringParams);
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -114,6 +122,19 @@ public class ServerServiceImpl extends BaseComputeServices implements ServerServ
 		Invocation<Servers> req = get(Servers.class, uri("/servers" + ((detail) ? "/detail" : "")));
 		if (allTenants)
 			req.param("all_tenants", 1);
+		return req.execute().getList();
+	}
+	
+	private List<? extends Server> list(boolean detail, boolean allTenants,Map<String, String> filteringParams) {
+		Invocation<Servers> req = get(Servers.class, uri("/servers" + ((detail) ? "/detail" : "")));
+		if (allTenants){
+			req.param("all_tenants", 1);
+		}
+		if (filteringParams != null) {
+			for (Map.Entry<String, String> entry : filteringParams.entrySet()) {
+				req = req.param(entry.getKey(), entry.getValue());
+			}
+		}
 		return req.execute().getList();
 	}
 

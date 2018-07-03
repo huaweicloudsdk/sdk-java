@@ -16,6 +16,7 @@
 package com.huawei.openstack4j.api.exceptions;
 
 import com.google.common.base.MoreObjects;
+import com.google.common.base.Strings;
 
 /**
  * Base Exception for HTTP Errors during Rest Operations
@@ -27,6 +28,8 @@ public class ResponseException extends OS4JException {
 	private static final long serialVersionUID = 7294957362769575271L;
 
 	protected int status;
+	
+//	protected String errorCode; 
 
 	public ResponseException(String message, int status) {
 		super(message);
@@ -44,7 +47,19 @@ public class ResponseException extends OS4JException {
 	public int getStatus() {
 		return status;
 	}
-
+	/**
+	 * @return the error code
+	 */
+//	public String getErrorCode() {
+//		String message = getMessage();
+//		if(!Strings.isNullOrEmpty(message)&&message.contains("[")&&message.contains("]")){
+//			int a =message.indexOf("[");
+//			int b =message.indexOf("]");
+//			errorCode=message.substring(a+1,b);
+//		};
+//		return errorCode;
+//		
+//	}
 	/**
 	 * {@inheritDoc}
 	 */

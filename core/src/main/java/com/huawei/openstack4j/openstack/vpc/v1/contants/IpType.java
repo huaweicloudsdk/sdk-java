@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 	华东：5_sbgp
 	2、功能说明：弹性公网IP的类型
 	3、约束：必须是系统具体支持的类型
- * @author wWX547855
+ * @author 
  *
  */
 public enum IpType {

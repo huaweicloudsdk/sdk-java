@@ -17,7 +17,7 @@ import com.huawei.openstack4j.openstack.common.IdResourceEntity;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.CloudServer.CloudServers;
 import com.huawei.openstack4j.openstack.ecs.v1.domain.ServerCreate;
-import com.huawei.openstack4j.openstack.ecs.v1_1.domain.ResizeServer;
+import com.huawei.openstack4j.openstack.ecs.v1.domain.ResizeServer;
 
 public class CloudServerService extends BaseElasticComputeServices {
 
@@ -93,7 +93,6 @@ public class CloudServerService extends BaseElasticComputeServices {
 	 */
 	public String start(List<String> serverIds) {
 		checkArgument(serverIds != null && serverIds.size() > 0, "parameter `serverIds` should not be empty");
-
 		BatchStartAction action = new BatchStartAction(serverIds);
 		return post(AsyncJobEntity.class, uri("/cloudservers/action")).entity(action).execute().getId();
 	}
@@ -119,6 +118,7 @@ public class CloudServerService extends BaseElasticComputeServices {
 
 	/**
 	 * Query cloud server details list by filteringParams
+	 * @return
 	 */
 	public List<CloudServer> list(Map<String, String> filteringParams) {
 		Invocation<CloudServers> serverInvocation = get(CloudServers.class, "/cloudservers/detail");
@@ -129,7 +129,6 @@ public class CloudServerService extends BaseElasticComputeServices {
 		}
 		return serverInvocation.execute().getList();
 	}
-	
 	/**
 	 * Query cloud server details
 	 * @param serverId

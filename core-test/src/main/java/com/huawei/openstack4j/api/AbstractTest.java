@@ -91,7 +91,9 @@ public abstract class AbstractTest {
         ECS1_1(10012),
         EVS2_1(10013),
         VPC2(10014),
-        CDN(10015)
+        CDN(10015),
+        TAG_MANAGEMENT(10016),
+        VPC(10017),
         ;
     	//@on
 

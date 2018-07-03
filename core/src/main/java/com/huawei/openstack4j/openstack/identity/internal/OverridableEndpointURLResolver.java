@@ -113,7 +113,11 @@ public class OverridableEndpointURLResolver implements EndpointURLResolver {
 		// try use override endpoint first
 		String endpoint = overrides.get(p.type);
 		if (endpoint != null) {
-			url = endpoint.replace("%(project_id)s", p.token.getProject().getId());
+			if(p.token.getProject()!=null){
+				url = endpoint.replace("%(project_id)s", p.token.getProject().getId());
+			}else{
+				url = endpoint;
+			}
 		} else {
 			url = resolveV3(p);
 		}
@@ -295,9 +299,14 @@ public class OverridableEndpointURLResolver implements EndpointURLResolver {
 	public String resolve(URLResolverParams p) {		
 		Key key = Key.of(p.projectId, p.type, p.perspective, p.region);
 		String url = CACHE.get(key);
-		if(null != url)	return url;			
-		 url = overrides.get(p.type).replace("%(project_id)s", p.projectId);		 
-		 CACHE.put(key, url);
+		if(null != url){
+			return url;	
+		}	
+		String endpoint = overrides.get(p.type);
+		if(null != endpoint){
+			url = endpoint.replace("%(project_id)s", p.projectId);		 
+			CACHE.put(key, url);
+		}		 
 		return url;
 	}
 

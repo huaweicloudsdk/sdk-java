@@ -438,6 +438,8 @@ import com.huawei.openstack4j.openstack.workflow.internal.ActionDefinitionServic
 import com.huawei.openstack4j.openstack.workflow.internal.WorkbookDefinitionServiceImpl;
 import com.huawei.openstack4j.openstack.workflow.internal.WorkflowDefinitionServiceImpl;
 import com.huawei.openstack4j.openstack.workflow.internal.WorkflowServiceImpl;
+import com.huawei.openstack4j.openstack.tms.v1.internal.TagManagementService;
+import com.huawei.openstack4j.openstack.tms.v1.internal.TagService;
 
 /**
  * Simple API Provider which keeps internally Maps interface implementations as singletons
@@ -483,6 +485,7 @@ public class DefaultAPIProvider implements APIProvider {
 		bind(VirtualPrivateCloudService.class, VirtualPrivateCloudService.class);
 		bind(com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService.class, com.huawei.openstack4j.openstack.vpc.v1.internal.VirtualPrivateCloudService.class);
 		bind(com.huawei.openstack4j.openstack.vpc.v1.internal.PublicIpService.class, com.huawei.openstack4j.openstack.vpc.v1.internal.PublicIpService.class);
+		bind(com.huawei.openstack4j.openstack.vpc.v1.internal.BandWidthService.class, com.huawei.openstack4j.openstack.vpc.v1.internal.BandWidthService.class);
 		bind(PublicIpService.class, PublicIpService.class);
 		bind(BandWidthService.class, BandWidthService.class);
 		bind(com.huawei.openstack4j.openstack.ecs.v1.internal.JobService.class, com.huawei.openstack4j.openstack.ecs.v1.internal.JobService.class);
@@ -624,7 +627,9 @@ public class DefaultAPIProvider implements APIProvider {
 //		bind(LbRuleV2Service.class, LbRuleServiceImpl.class);
 //		bind(LbWhitelistV2Service.class, LbWhitelistServiceImpl.class);
 //		bind(LbCertificateV2Service.class, LbCertificateServiceImpl.class);
-		
+		// tms
+		bind(TagManagementService.class, TagManagementService.class);
+		bind(TagService.class, TagService.class);
 		
 		// trove
 		bind(TroveService.class, TroveService.class);

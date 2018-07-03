@@ -25,7 +25,7 @@ public class AutoScalingLifecycleHookServiceV1Tests extends AbstractTest{
 	
 //	public void testCreateLifecyclehook() throws IOException{
 //		respondWith(JSON_SCALING_LIFECYCLEHOOK_CREATE);
-//		String groupId = "70376a9b-2454-4483-bac8-8999dabe6929";
+//		String groupId = "testgroupid";
 //		ASAutoScalingLifecycleHook lifecycleHook1 = ASAutoScalingLifecycleHook.builder().lifecycleHookName("test-hook2").lifecycleHookType(ASAutoScalingLifecycleHookType.INSTANCE_LAUNCHING).defaultResult(ASAutoScalingDefaultResult.ABANDON).build();
 //		ASAutoScalingLifecycleHook lifecycleHook2 = osv3().autoScaling().lifecycleHook().create(lifecycleHook1,groupId);
 //	}
@@ -33,7 +33,7 @@ public class AutoScalingLifecycleHookServiceV1Tests extends AbstractTest{
 	@Test
 	public void testListLifecycleHookDetail() throws IOException{
 		respondWith(JSON_SCALING_LIFECYCLEHOOK_LIST2);
-		String groupId = "70376a9b-2454-4483-bac8-8999dabe6929";
+		String groupId = "testgroupid";
 		ASAutoScalingLifecycleHook lifecycleHook = osv3().autoScaling().lifecycleHook().list(groupId, "test-kakaka1");
 		assertTrue(lifecycleHook != null);
 	}
@@ -41,7 +41,7 @@ public class AutoScalingLifecycleHookServiceV1Tests extends AbstractTest{
 	@Test
 	public void testListLifecycleHook() throws IOException{
 		respondWith(JSON_SCALING_LIFECYCLEHOOK_LIST1);
-		String groupId = "70376a9b-2454-4483-bac8-8999dabe6929";
+		String groupId = "testgroupid";
 		List<? extends ASAutoScalingLifecycleHook> lifecycleHookList = osv3().autoScaling().lifecycleHook().list(groupId);
 		assertTrue(lifecycleHookList != null && lifecycleHookList.size() == 2);
 	}
@@ -49,7 +49,7 @@ public class AutoScalingLifecycleHookServiceV1Tests extends AbstractTest{
 	@Test
 	public void testInstanceLifecycleHook(){
 		respondWith(204);
-		String groupId = "70376a9b-2454-4483-bac8-8999dabe6929";
+		String groupId = "testgroupid";
 		ASAutoScalingLifecycleInstanceCallback lifecycleInstanceCallback = ASAutoScalingLifecycleInstanceCallback.builder().lifecycleActionKey("test").build();
 		ActionResponse ac = osv3().autoScaling().lifecycleHook().scalingInstanceHookCallback(groupId,lifecycleInstanceCallback);
 		assertTrue(ac != null);
@@ -58,7 +58,7 @@ public class AutoScalingLifecycleHookServiceV1Tests extends AbstractTest{
 	@Test
 	public void testDelete(){
 		respondWith(204);
-		String groupId = "70376a9b-2454-4483-bac8-8999dabe6929";
+		String groupId = "testgroupid";
 		ActionResponse ac = osv3().autoScaling().lifecycleHook().delete(groupId, "test");
 		assertTrue(ac != null);
 	}
@@ -66,7 +66,7 @@ public class AutoScalingLifecycleHookServiceV1Tests extends AbstractTest{
 	@Test
 	public void testModify() throws IOException{
 		respondWith(JSON_SCALING_LIFECYCLEHOOK_MODIFY);
-		String groupId = "70376a9b-2454-4483-bac8-8999dabe6929";
+		String groupId = "testgroupid";
 		ASAutoScalingLifecycleHook lifecycleHook1 = ASAutoScalingLifecycleHook.builder().lifecycleHookType(ASAutoScalingLifecycleHookType.INSTANCE_LAUNCHING).defaultResult(ASAutoScalingDefaultResult.ABANDON).build();
 		ASAutoScalingLifecycleHook lifecycleHook2 = osv3().autoScaling().lifecycleHook().update(groupId, "Test", lifecycleHook1);
 		assertTrue(lifecycleHook2 != null);
@@ -75,7 +75,7 @@ public class AutoScalingLifecycleHookServiceV1Tests extends AbstractTest{
 	@Test
 	public void testListAutoScalingInstanceHangupInfo() throws IOException{
 		respondWith(JSON_SCALING_INSTANCEHANGUP_LIST);
-		String groupId = "70376a9b-2454-4483-bac8-8999dabe6929";
+		String groupId = "testgroupid";
 		List<? extends AutoScalingInstanceHangupInfo> hangupInfoList = osv3().autoScaling().lifecycleHook().scalingInstanceHangup(groupId);		
 		assertTrue(hangupInfoList != null );
 	}

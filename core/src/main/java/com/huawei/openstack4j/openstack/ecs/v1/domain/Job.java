@@ -16,7 +16,7 @@ import com.huawei.openstack4j.model.ModelEntity;
  *  查询Job的执行状态。
 	对于创建云服务器、删除云服务器、云服务器批量操作和网卡操作等异步API，命令下
 	发后，会返回job_id，通过job_id可以查询任务的执行状态。
- * @author wWX547855
+ * @author 
  *
  */
 @Getter

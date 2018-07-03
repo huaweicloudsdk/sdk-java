@@ -5,9 +5,12 @@ import java.net.URISyntaxException;
 
 import org.slf4j.LoggerFactory;
 
+import com.huawei.openstack4j.api.Apis;
 import com.huawei.openstack4j.api.OSClient.OSClientAKSK;
 import com.huawei.openstack4j.api.client.CloudProvider;
+import com.huawei.openstack4j.api.exceptions.RegionEndpointNotFoundException;
 import com.huawei.openstack4j.api.identity.EndpointURLResolver;
+import com.huawei.openstack4j.api.identity.v3.IdentityService;
 import com.huawei.openstack4j.api.types.ServiceType;
 import com.huawei.openstack4j.model.identity.AuthVersion;
 import com.huawei.openstack4j.model.identity.URLResolverParams;
@@ -37,11 +40,25 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 	 */
 	@Override
 	public String getEndpoint(ServiceType service) {
-		final EndpointURLResolver endpointResolver = (config != null && config.getEndpointURLResolver() != null)
-				? config.getEndpointURLResolver() : defaultEndpointURLResolver;		
+		/*final EndpointURLResolver endpointResolver = (config != null && config.getEndpointURLResolver() != null)
+				? config.getEndpointURLResolver() : defaultEndpointURLResolver;		*/
 		URLResolverParams params = URLResolverParams.create(service).perspective(perspective).region(region)
 				.domain(serviceDomain).projectId(projectId);
-		return addNATIfApplicable(endpointResolver.resolve(params));
+		//如果有重写就先去重写匹配，重写匹配不到就去配置文件匹配
+		String url = null;
+		try{
+			if(config != null && config.getEndpointURLResolver() != null){
+				url = config.getEndpointURLResolver().resolve(params);
+				if(url == null){
+					url = defaultEndpointURLResolver.resolve(params);
+				}
+			}else{
+				url = defaultEndpointURLResolver.resolve(params);
+			}
+		}catch(NullPointerException e){
+			throw new RegionEndpointNotFoundException("region endpoint can not be found");
+		}
+		return addNATIfApplicable(url);
 	}
 
 	private String addNATIfApplicable(String url) {
@@ -110,6 +127,11 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 	
 	public String getRegion() {
 		return region;
+	}
+
+	@Override
+	public IdentityService identity() {
+		return Apis.getIdentityV3Services();
 	}
 
 }

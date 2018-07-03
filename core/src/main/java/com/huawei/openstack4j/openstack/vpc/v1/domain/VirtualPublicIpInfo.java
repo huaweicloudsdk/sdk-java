@@ -13,7 +13,7 @@ import com.huawei.openstack4j.model.ModelEntity;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class VirtualPublicIpResp implements ModelEntity{
+public class VirtualPublicIpInfo implements ModelEntity{
 
 	/**
 	 * 
@@ -22,9 +22,9 @@ public class VirtualPublicIpResp implements ModelEntity{
 	
 	@JsonProperty("publicip_id")
 	private String publicipId;
-	@JsonProperty("type")
+	@JsonProperty("publicip_type")
 	private String type;
-	@JsonProperty("public_ip_address")
+	@JsonProperty("publicip_address")
 	private String publicIpAddress;
 	
 }
