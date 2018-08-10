@@ -22,6 +22,7 @@ import com.huawei.openstack4j.api.OSClient;
 import com.huawei.openstack4j.api.OSClient.OSClientV2;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
 import com.huawei.openstack4j.api.client.CloudProvider;
+import com.huawei.openstack4j.api.exceptions.AuthenticationException;
 import com.huawei.openstack4j.api.types.Facing;
 import com.huawei.openstack4j.core.transport.*;
 import com.huawei.openstack4j.core.transport.internal.HttpExecutor;
@@ -124,6 +125,7 @@ public class OSAuthenticator {
             authenticateV2((com.huawei.openstack4j.openstack.identity.v2.domain.Auth) auth, info, session.getConfig());
             break;
         case V3:
+        case AKSK: throw new AuthenticationException("Authorization information is wrong", 401);
         default:
             Token token = ((OSClientSessionV3) session).getToken();
             info = new SessionInfo(token.getEndpoint(), session.getPerspective(), true, session.getProvider());

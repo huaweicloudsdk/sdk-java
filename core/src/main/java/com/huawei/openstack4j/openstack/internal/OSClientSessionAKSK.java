@@ -5,6 +5,9 @@ import java.net.URISyntaxException;
 
 import org.slf4j.LoggerFactory;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
+import com.google.common.base.Strings;
 import com.huawei.openstack4j.api.Apis;
 import com.huawei.openstack4j.api.OSClient.OSClientAKSK;
 import com.huawei.openstack4j.api.client.CloudProvider;
@@ -99,6 +102,13 @@ public class OSClientSessionAKSK extends OSClientSession<OSClientSessionAKSK, OS
 	@Override
 	public com.huawei.openstack4j.api.OSClient.OSClientAKSK credentials(String accessKey, String secretKey, String region,
 			String projectId, String serviceDomain) {
+		
+		checkArgument(!Strings.isNullOrEmpty(accessKey),"parameter `accessKey` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(secretKey),"parameter `secretKey` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(region),"parameter `region` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(projectId),"parameter `projectId` should not be empty");
+		checkArgument(!Strings.isNullOrEmpty(serviceDomain),"parameter `domain` should not be empty");
+		
 		this.accessKey = accessKey;
 		this.secretKey = secretKey;
 		this.serviceDomain = serviceDomain;

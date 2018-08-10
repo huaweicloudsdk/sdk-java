@@ -17,6 +17,7 @@ package com.huawei.openstack4j.openstack.client;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
+import com.google.common.base.Strings;
 import com.huawei.openstack4j.api.OSClient.OSClientAKSK;
 import com.huawei.openstack4j.api.OSClient.OSClientV2;
 import com.huawei.openstack4j.api.OSClient.OSClientV3;
@@ -234,6 +235,13 @@ public abstract class OSClientBuilder<R, T extends IOSClientBuilder<R, T>> imple
 		@Override
 		public com.huawei.openstack4j.api.client.IOSClientBuilder.AKSK credentials(String accessKey, String secretKey,
 				String region, String projectId, String serviceDomainName) {
+			
+			checkArgument(!Strings.isNullOrEmpty(accessKey),"parameter `accessKey` should not be empty");
+			checkArgument(!Strings.isNullOrEmpty(secretKey),"parameter `secretKey` should not be empty");
+			checkArgument(!Strings.isNullOrEmpty(region),"parameter `region` should not be empty");
+			checkArgument(!Strings.isNullOrEmpty(projectId),"parameter `projectId` should not be empty");
+			checkArgument(!Strings.isNullOrEmpty(serviceDomainName),"parameter `domain` should not be empty");
+			
 			this.accessKey = accessKey;
 			this.secretKey = secretKey;
 			this.serviceDomainName = serviceDomainName;

@@ -22,6 +22,7 @@ import java.util.HashMap;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.huawei.openstack4j.api.ServiceEndpointProvider;
+import com.huawei.openstack4j.api.exceptions.OS4JException;
 import com.huawei.openstack4j.api.types.Facing;
 import com.huawei.openstack4j.api.types.ServiceType;
 import com.huawei.openstack4j.core.transport.ObjectMapperSingleton;
@@ -46,8 +47,14 @@ public class AKSKEndpointURLResolver extends AbstractEndpointURLResolver {
 	 * @return
 	 */
 	public static AKSKEndpointURLResolver instance() {
-		InputStream is = AKSKEndpointURLResolver.class.getClassLoader().getResourceAsStream(defaultServiceEndpointFile);
-		ServiceEndpointProvider defaultEndpointProvider = new LocalFileServiceEndpointProvider(is);
+		ServiceEndpointProvider defaultEndpointProvider = null;
+		try{
+			InputStream is = AKSKEndpointURLResolver.class.getClassLoader().getResourceAsStream(defaultServiceEndpointFile);
+			defaultEndpointProvider = new LocalFileServiceEndpointProvider(is);			
+		}catch(NullPointerException e){
+			throw new OS4JException("defaultServiceEndpointFile can not be found");
+		}
+		
 		return new AKSKEndpointURLResolver().withEndpointProvider(defaultEndpointProvider);
 	}
 

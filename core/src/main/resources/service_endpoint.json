@@ -70,5 +70,8 @@
   },
    "VPC":{
   	"public": "https://vpc.%(region)s.%(domain)s/v1/%(projectId)s"
+  },
+  "ORCHESTRATION":{
+  	"public": "https://rts.%(region)s.%(domain)s/v1/%(projectId)s"
   }
 }

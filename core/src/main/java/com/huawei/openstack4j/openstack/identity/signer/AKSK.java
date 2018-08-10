@@ -98,7 +98,8 @@ public class AKSK {
 		authenticationHeaders.put(Constants.X_SDK_DATE, dateTimeStamp);
 
 		// Step 2: Create canonical URI--the part of the URI from domain to query
-		String path = url.getPath();
+		String pathOld = url.getPath();
+		String path = pathOld.replaceAll(":", "%3A");
 		String canonicalURI = path.endsWith("/") ? path : path + "/";
 
 		// Step 3: Create the canonical query string. In this example (a GET request),
