@@ -124,8 +124,8 @@ public class OSAuthenticator {
             Auth auth = (Auth) ((access.isCredentialType()) ? access.getCredentials() : access.getTokenAuth());
             authenticateV2((com.huawei.openstack4j.openstack.identity.v2.domain.Auth) auth, info, session.getConfig());
             break;
-        case V3:
         case AKSK: throw new AuthenticationException("Authorization information is wrong", 401);
+        case V3:
         default:
             Token token = ((OSClientSessionV3) session).getToken();
             info = new SessionInfo(token.getEndpoint(), session.getPerspective(), true, session.getProvider());
